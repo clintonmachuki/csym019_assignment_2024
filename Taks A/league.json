@@ -1,0 +1,16 @@
+{
+    "footballScoresFixtures": [
+      {
+        "homeTeam": "Manchester United",
+        "awayTeam": "Liverpool",
+        "date": "2024-04-20",
+        "score": "2 - 1"
+      },
+      {
+        "homeTeam": "Chelsea",
+        "awayTeam": "Arsenal",
+        "date": "2024-04-21",
+        "score": "3 - 0"
+      }
+  ]
+}
