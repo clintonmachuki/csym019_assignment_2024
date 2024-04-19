@@ -12,5 +12,76 @@
         "date": "2024-04-21",
         "score": "3 - 0"
       }
-  ]
-}
+  ],
+    "premierLeagueTable": [
+      {
+        "name": "Arsenal",
+        "icons": "https://ssl.gstatic.com/onebox/media/sports/logos/4us2nCgl6kgZc0t3hpW75Q_96x96.png",
+        "info": {
+            "wins": 0,
+            "draws": 0,
+            "losses": 5,
+            "goalsFor": 238,
+            "goalsAgainst": 140
+        }
+    },
+    {
+        "name": "Manchester United",      
+        "icons": "https://ssl.gstatic.com/onebox/media/sports/logos/udQ6ns69PctCv143h-GeYw_48x48.png",
+        "info": {
+            "wins": 50,
+            "draws": 3,
+            "losses": 4,
+            "goalsFor": 271,
+            "goalsAgainst": 0
+        }
+    },
+    {
+        "name": "Chelsea",      
+        "icons": "https://ssl.gstatic.com/onebox/media/sports/logos/fhBITrIlbQxhVB6IjxUO6Q_96x96.png",
+        "info": {
+            "wins": 3,
+            "draws": 4,
+            "losses": 21,
+            "goalsFor": 30,
+            "goalsAgainst": 100
+        }
+    },
+    {
+        "name": "Manchester City",
+        "icons": "https://ssl.gstatic.com/onebox/media/sports/logos/z44l-a0W1v5FmgPnemV6Xw_48x48.png",
+        "info": {
+            "wins": 10,
+            "draws": 3,
+            "losses": 4,
+            "goalsFor": 71,
+            "goalsAgainst": 4
+        }
+    },
+    {
+        "name": "Wolves",
+        "icons": "https://ssl.gstatic.com/onebox/media/sports/logos/-WjHLbBIQO9xE2e2MW3OPQ_48x48.png",
+        "info": {
+            "wins": 30,
+            "draws": 3,
+            "losses": 4,
+            "goalsFor": 21,
+            "goalsAgainst": 6
+        }
+    }
+  ],
+    
+    "premierLeagueTopScorers": [
+      {
+        "playerName": "Erling Haaland",
+        "team": "Manchester City",
+        "goalsScored": 25
+      },
+      {
+        "playerName": "Son",
+        "team": "Tottenham Hotspur",
+        "goalsScored": 23
+      }
+   ]
+  }
+  
