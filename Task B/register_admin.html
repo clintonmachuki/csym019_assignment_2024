@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Admin</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to an external stylesheet (styles.css) for styling -->
+</head>
+<body>
+    <h2>Register Admin</h2>
+    <!-- Navigation links -->
+    <ul>
+        <li><a href="league_table.php">League Table</a></li>
+        <li><a href="add_results.php">Add Results</a></li>
+        <li><a href="add_scorers.php">Add Scorers</a></li>
+        <li><a href="top_scorers.php">Top Scorers</a></li>
+        <li><a href="pie.php">Pie Chart</a></li>
+        <li><a href="statistics.php">Statistics</a></li>
+        <li><a href="display_fixtures.php">Display Fixtures</a></li>
+        <li><a href="fixtures.php">Fixtures</a></li>
+        <li><a href="add_player.php">Add Player</a></li>
+        <li><a href="teams_input.php">Teams Input</a></li>
+        <li><a href="register_admin.html">Register admin</a></li>
+    </ul>
+    <!-- Admin registration form -->
+    <form action="register_admin.php" method="POST"> <!-- Form submission to register_admin.php using POST method -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br> <!-- Input field for username with required attribute -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br> <!-- Input field for password with required attribute -->
+        <button type="submit">Register</button> <!-- Submit button to register the admin -->
+    </form>
+</body>
+</html>
