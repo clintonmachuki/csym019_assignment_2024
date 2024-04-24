@@ -47,7 +47,20 @@ $conn->close(); // Close the database connection after fetching data
 </head>
 <body>
     <h2>Fixtures</h2> <!-- Heading for the page -->
-    
+    <ul>
+        <!-- List of navigation links to other pages -->
+        <li><a href="league_table.php">League Table</a></li>
+        <li><a href="add_results.php">Add Results</a></li>
+        <li><a href="add_scorers.php">Add Scorers</a></li>
+        <li><a href="top_scorers.php">Top Scorers</a></li>
+        <li><a href="pie.php">Pie Chart</a></li>
+        <li><a href="statistics.php">Statistics</a></li>
+        <li><a href="display_fixtures.php">Display Fixtures</a></li>
+        <li><a href="fixtures.php">Fixtures</a></li>
+        <li><a href="add_player.php">Add Player</a></li>
+        <li><a href="teams_input.php">Teams Input</a></li>
+        <li><a href="register_admin.html">Register admin</a></li>
+    </ul>
     <?php
     // Display status message if provided in the URL
     if (isset($_GET['status'])) { // Check if 'status' parameter is set in the URL
