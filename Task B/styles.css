@@ -1,0 +1,164 @@
+/* Set the font family and background color for the entire page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 20px; /* Add margin to the edges of the page */
+}
+
+/* Center-align heading */
+h2 {
+    text-align: center;
+    margin-top: 20px; /* Add margin space above the heading */
+}
+
+/* Style the unordered list (menu) */
+ul {
+    list-style-type: none; /* Remove default list bullets */
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center-align the list items */
+    color: white; /* Set text color to white */
+    background-color: #090909; /* Background color for the list menu */
+    padding: 10px; /* Add padding to the list menu */
+}
+
+/* Style the list items */
+ul li {
+    display: inline; /* Display list items inline */
+    margin: 0 10px; /* Add margin space around each list item */
+}
+
+/* Style the table */
+table {
+    width: 100%; /* Make the table occupy 100% of its container */
+    border-collapse: collapse; /* Collapse table borders */
+    margin-top: 20px; /* Add margin space above the table */
+    border: 2px solid #333; /* Add border to the table */
+}
+
+/* Style table header and data cells */
+table th, table td {
+    padding: 10px; /* Add padding to table cells */
+    text-align: center; /* Center-align text within cells */
+    border: 1px solid #333; /* Add border to table cells */
+}
+
+/* Style table header */
+table th {
+    background-color: #333; /* Background color for table headers */
+    color: #fff; /* Text color for table headers */
+}
+
+/* Alternate row colors for table */
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Background color for even rows */
+}
+
+/* Highlight row on hover */
+table tr:hover {
+    background-color: #ddd; /* Background color for hovered rows */
+}
+
+/* Style hyperlinks */
+a {
+    text-decoration: none; /* Remove underline from hyperlinks */
+    color: #fff; /* Set text color for hyperlinks */
+}
+
+/* Style hyperlinks on hover */
+a:hover {
+    background-color: #3e3c3c; /* Background color for hyperlinks on hover */
+}
+
+/* Left-align team name cells */
+table td:nth-child(2) {
+    text-align: left; /* Left-align text within team name cells */
+}
+
+
+/* Style the form */
+form {
+    text-align: center; /* Center-align form elements */
+    margin-top: 20px; /* Add margin space above the form */
+}
+
+/* Style form labels */
+form label {
+    display: block; /* Display labels as block elements */
+    margin-bottom: 10px; /* Add margin space below each label */
+}
+
+
+
+/* Style the submit button */
+form button[type="submit"] {
+    background-color: #4CAF50; /* Set button background color */
+    color: white; /* Set button text color */
+    padding: 10px 20px; /* Add padding to button */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Set cursor to pointer on hover */
+    border-radius: 4px; /* Add border radius to button */
+}
+
+/* Style the submit button on hover */
+form button[type="submit"]:hover {
+    background-color: #45a049; /* Darker background color on hover */
+}
+
+
+/* Style form input fields */
+form select,
+form input[type="date"], input[type="text"],input[type="password"],input[type="number"] {
+    width: 50%; /* Set input fields to occupy 50% of the width */
+    padding: 8px; /* Add padding to input fields */
+    margin-bottom: 10px; /* Add margin space below each input field */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Style the container for scorer entries */
+#scorersContainer {
+    margin-bottom: 20px; /* Add margin space below the scorers container */
+}
+
+/* Style scorer entry fields */
+.scorerEntry {
+    margin-bottom: 10px; /* Add margin space below each scorer entry */
+}
+
+/* Style the add scorer button */
+#addScorerButton {
+    margin-bottom: 10px; /* Add margin space below the add scorer button */
+}
+label {
+    display: block; /* Display labels as block elements */
+    margin-bottom: 10px; /* Add margin space below labels */
+}
+
+/* Style the dashboard grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: minmax(100px, auto); /* Automatically adjust row height */
+    gap: 20px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+    height: 100%; /* Make grid take up full height of body */
+}
+
+/* Style the dashboard grid items */
+.dashboard-grid li {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the links inside grid items */
+.dashboard-grid li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
