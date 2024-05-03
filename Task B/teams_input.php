@@ -9,11 +9,11 @@
         $sql = "INSERT INTO Teams (TeamName, TeamLogo) VALUES ('$team_name', '$team_logo')";
         if ($conn->query($sql) === TRUE) {
             // Redirect to teams_input.html with success message
-            header("Location: teams_input.html?status=success");
+            header("Location: teams_input.php?status=success");
             exit();
         } else {
             // Redirect to teams_input.html with error message
-            header("Location: teams_input.html?status=error");
+            header("Location: teams_input.php?status=error");
             exit();
         }
     }

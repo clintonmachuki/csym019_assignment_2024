@@ -86,16 +86,6 @@ foreach ($teams as $teamID => $teamName) {
     $goalDifference[$teamName] = $goalsFor[$teamName] - $goalsAgainst[$teamName];
 }
 
-// Custom sorting function to sort by points and then by goal difference
-uasort($teams, function($a, $b) use ($points, $goalDifference) {
-    if ($points[$a] == $points[$b]) {
-        // If points are equal, compare goal difference
-        return $goalDifference[$b] - $goalDifference[$a];
-    }
-    // Otherwise, compare points
-    return $points[$b] - $points[$a];
-});
-
 // Close the database connection
 $conn->close();
 ?>
@@ -123,83 +113,83 @@ $conn->close();
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
     <canvas id="leagueTableChart" width="400" height="200"></canvas>
-    <script >
+    <script>
+        var teams = <?php echo json_encode(array_values($teams)); ?>;
+        var points = <?php echo json_encode(array_values($points)); ?>;
+        var wins = <?php echo json_encode(array_values($won)); ?>;
+        var losses = <?php echo json_encode(array_values($lost)); ?>;
+        var draws = <?php echo json_encode(array_values($drawn)); ?>;
+
         document.addEventListener("DOMContentLoaded", function() {
-    var ctx = document.getElementById('leagueTableChart').getContext('2d');
+            var ctx = document.getElementById('leagueTableChart').getContext('2d');
 
-    var teams = <?php echo json_encode(array_values($teams)); ?>;
-    var points = <?php echo json_encode(array_values($points)); ?>;
-    var wins = <?php echo json_encode(array_values($won)); ?>;
-    var losses = <?php echo json_encode(array_values($lost)); ?>;
-    var draws = <?php echo json_encode(array_values($drawn)); ?>;
-
-    // Create an array of objects with team data
-    var teamData = [];
-    for (var i = 0; i < teams.length; i++) {
-        teamData.push({
-            team: teams[i],
-            points: points[i],
-            wins: wins[i],
-            losses: losses[i],
-            draws: draws[i]
-        });
-    }
-
-    // Sort team data by points (descending order)
-    teamData.sort(function(a, b) {
-        return b.points - a.points;
-    });
-
-    // Extract sorted data back into separate arrays
-    for (var i = 0; i < teamData.length; i++) {
-        teams[i] = teamData[i].team;
-        points[i] = teamData[i].points;
-        wins[i] = teamData[i].wins;
-        losses[i] = teamData[i].losses;
-        draws[i] = teamData[i].draws;
-    }
-
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: teams,
-            datasets: [{
-                label: 'Points',
-                data: points,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }, {
-                label: 'Wins',
-                data: wins,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }, {
-                label: 'Losses',
-                data: losses,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }, {
-                label: 'Draws',
-                data: draws,
-                backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                borderColor: 'rgba(255, 206, 86, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+            // Create an array of objects with team data
+            var teamData = [];
+            for (var i = 0; i < teams.length; i++) {
+                teamData.push({
+                    team: teams[i],
+                    points: points[i],
+                    wins: wins[i],
+                    losses: losses[i],
+                    draws: draws[i]
+                });
             }
-        }
-    });
+
+            // Sort team data by points (descending order)
+            teamData.sort(function(a, b) {
+                return b.points - a.points;
+            });
+
+            // Extract sorted data back into separate arrays
+            for (var i = 0; i < teamData.length; i++) {
+                teams[i] = teamData[i].team;
+                points[i] = teamData[i].points;
+                wins[i] = teamData[i].wins;
+                losses[i] = teamData[i].losses;
+                draws[i] = teamData[i].draws;
+            }
+
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: teams,
+                    datasets: [{
+                        label: 'Points',
+                        data: points,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Wins',
+                        data: wins,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Losses',
+                        data: losses,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Draws',
+                        data: draws,
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
         });
-</script>
+    </script>
 </body>
 </html>
