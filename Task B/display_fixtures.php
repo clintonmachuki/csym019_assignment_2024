@@ -46,7 +46,6 @@ $conn->close(); // Close the database connection after fetching data
     </ul>
     <table border="1" cellpadding="5" cellspacing="0"> <!-- Table to display fixtures data -->
         <tr>
-            <th>FixtureID</th> <!-- Table header for FixtureID -->
             <th>Home Team</th> <!-- Table header for Home Team -->
             <th>Away Team</th> <!-- Table header for Away Team -->
             <th>Date</th> <!-- Table header for Date -->
@@ -54,7 +53,6 @@ $conn->close(); // Close the database connection after fetching data
         </tr>
         <?php foreach ($fixtures as $fixture): ?> <!-- Loop through each fixture data -->
             <tr>
-                <td><?php echo $fixture['FixtureID']; ?></td> <!-- Display FixtureID -->
                 <td><?php echo $fixture['HomeTeam']; ?></td> <!-- Display Home Team -->
                 <td><?php echo $fixture['AwayTeam']; ?></td> <!-- Display Away Team -->
                 <td><?php echo $fixture['Date']; ?></td> <!-- Display Date -->

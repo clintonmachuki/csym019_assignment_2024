@@ -14,15 +14,15 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Initialize arrays to store team statistics
-$points = array(); // Total points
-$played = array(); // Total matches played
-$won = array(); // Total matches won
-$drawn = array(); // Total matches drawn
-$lost = array(); // Total matches lost
-$goalsFor = array(); // Total goals scored
-$goalsAgainst = array(); // Total goals conceded
-$goalDifference = array(); // Goal difference
+// Initialize arrays
+$points = array();
+$played = array();
+$won = array();
+$drawn = array();
+$lost = array();
+$goalsFor = array();
+$goalsAgainst = array();
+$goalDifference = array();
 
 // Fetch team names from the database
 $sql = "SELECT TeamID, TeamName FROM Teams";
@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Process results and calculate statistics for each team
+// Process results and calculate points for each team
 foreach ($fixtures as $fixture) {
     $result = $fixture['Result'];
     list($home_score, $away_score) = explode('-', $result);
@@ -81,20 +81,10 @@ foreach ($fixtures as $fixture) {
     }
 }
 
-// Calculate goal difference for each team
+// Calculate goal difference
 foreach ($teams as $teamID => $teamName) {
     $goalDifference[$teamName] = $goalsFor[$teamName] - $goalsAgainst[$teamName];
 }
-
-// Custom sorting function to sort teams by points and then by goal difference
-uasort($teams, function($a, $b) use ($points, $goalDifference) {
-    if ($points[$a] == $points[$b]) {
-        // If points are equal, compare goal difference
-        return $goalDifference[$b] - $goalDifference[$a];
-    }
-    // Otherwise, compare points
-    return $points[$b] - $points[$a];
-});
 
 // Close the database connection
 $conn->close();
