@@ -75,6 +75,7 @@ $conn->close();
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
+
     <form action="top_scorers.php" method="POST">
         <label for="team_filter">Filter by Team:</label>
         <select id="team_filter" name="team_filter">

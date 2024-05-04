@@ -44,21 +44,36 @@ $conn->close(); // Close the database connection after fetching data
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
-    <table border="1" cellpadding="5" cellspacing="0"> <!-- Table to display fixtures data -->
-        <tr>
-            <th>Home Team</th> <!-- Table header for Home Team -->
-            <th>Away Team</th> <!-- Table header for Away Team -->
-            <th>Date</th> <!-- Table header for Date -->
-            <th>Result</th> <!-- Table header for Result -->
+    <!-- HTML for fixture display -->
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>FixtureID</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Date</th>
+        <th>Result</th>
+    </tr>
+    <?php foreach ($fixtures as $fixture): ?>
+        <!-- Add a class to the row for styling -->
+        <tr class="clickable-row" data-href="fixture_outcome.php?fixture_id=<?php echo $fixture['FixtureID']; ?>">
+            <td><?php echo $fixture['FixtureID']; ?></td>
+            <td><?php echo $fixture['HomeTeam']; ?></td>
+            <td><?php echo $fixture['AwayTeam']; ?></td>
+            <td><?php echo $fixture['Date']; ?></td>
+            <td><?php echo $fixture['Result']; ?></td>
         </tr>
-        <?php foreach ($fixtures as $fixture): ?> <!-- Loop through each fixture data -->
-            <tr>
-                <td><?php echo $fixture['HomeTeam']; ?></td> <!-- Display Home Team -->
-                <td><?php echo $fixture['AwayTeam']; ?></td> <!-- Display Away Team -->
-                <td><?php echo $fixture['Date']; ?></td> <!-- Display Date -->
-                <td><?php echo $fixture['Result']; ?></td> <!-- Display Result -->
-            </tr>
-        <?php endforeach; ?>
-    </table>
-</body>
-</html>
+    <?php endforeach; ?>
+</table>
+
+<!-- JavaScript to make rows clickable -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var rows = document.querySelectorAll(".clickable-row"); // Select all rows with the class "clickable-row"
+        rows.forEach(function(row) {
+            row.addEventListener("click", function() {
+                var href = row.getAttribute("data-href"); // Get the URL from the "data-href" attribute
+                window.location.href = href; // Navigate to the URL when the row is clicked
+            });
+        });
+    });
+</script>
