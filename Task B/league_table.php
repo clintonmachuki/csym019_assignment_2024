@@ -109,7 +109,6 @@ $conn->close(); // Close the database connection after fetching data
     <link rel="stylesheet" href="styles.css"> <!-- Link to an external stylesheet -->
 </head>
 <body>
-    <h2>League Table</h2> <!-- Heading for the league table -->
     <ul>
         <!-- List of navigation links to other pages -->
         <li><a href="league_table.php">League Table</a></li>
@@ -124,7 +123,8 @@ $conn->close(); // Close the database connection after fetching data
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
-    <table border="1"> <!-- Table to display the league table -->
+    <h2>League Table</h2> <!-- Heading for the league table -->
+    <table border="1" id="league-table"> <!-- Table to display the league table -->
         <tr>
             <th>Position</th>
             <th>Team</th>
@@ -139,7 +139,7 @@ $conn->close(); // Close the database connection after fetching data
         </tr>
         <?php $position = 1; ?> <!-- Initialize position counter -->
         <?php foreach ($teams as $teamID => $teamName): ?> <!-- Loop through teams -->
-            <tr>
+            <tr class="clickable-row" data-href="team_fixtures.php?teamID=<?php echo $teamID; ?>">
                 <td><?php echo $position; ?></td> <!-- Display position -->
                 <td><?php echo $teamName; ?></td> <!-- Display team name -->
                 <td><?php echo $played[$teamName]; ?></td> <!-- Display matches played -->
@@ -154,5 +154,17 @@ $conn->close(); // Close the database connection after fetching data
             <?php $position++; ?> <!-- Increment position counter -->
         <?php endforeach; ?> <!-- End of team loop -->
     </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var rows = document.querySelectorAll(".clickable-row"); // Select all rows with the class "clickable-row"
+            rows.forEach(function(row) {
+                row.addEventListener("click", function() {
+                    var href = row.getAttribute("data-href"); // Get the URL from the "data-href" attribute
+                    window.location.href = href; // Navigate to the URL when the row is clicked
+                });
+            });
+        });
+    </script>
 </body>
 </html>

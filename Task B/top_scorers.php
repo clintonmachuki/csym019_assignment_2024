@@ -2,11 +2,12 @@
 include 'connector.php';
 
 // Fetch goals scored by each player from the database
-$sql = "SELECT Players.PlayerName, Teams.TeamName, COUNT(Goals.PlayerID) AS GoalsScored
-        FROM Players
-        INNER JOIN Teams ON Players.TeamID = Teams.TeamID
-        LEFT JOIN Goals ON Players.PlayerID = Goals.PlayerID
-        GROUP BY Players.PlayerID";
+$sql = "SELECT Players.PlayerID, Players.PlayerName, Teams.TeamName, COUNT(Goals.PlayerID) AS GoalsScored
+            FROM Players
+            INNER JOIN Teams ON Players.TeamID = Teams.TeamID
+            LEFT JOIN Goals ON Players.PlayerID = Goals.PlayerID
+            GROUP BY Players.PlayerID
+            ";
 $result = $conn->query($sql);
 
 $goalscorers = array();
@@ -60,8 +61,7 @@ $conn->close();
     <title>Top Scorers</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <h2>Top Scorers</h2>
+<body>    
     <ul>
         <li><a href="league_table.php">League Table</a></li>
         <li><a href="add_results.php">Add Results</a></li>
@@ -75,7 +75,7 @@ $conn->close();
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
-
+    <h2>Top Scorers</h2>
     <form action="top_scorers.php" method="POST">
         <label for="team_filter">Filter by Team:</label>
         <select id="team_filter" name="team_filter">
@@ -86,22 +86,41 @@ $conn->close();
         </select>
         <button type="submit">Apply Filter</button>
     </form>
-
-    <table>
-        <tr>
-            <th>Player Name</th>
-            <th>Team</th>
-            <th>Goals Scored</th>
-        </tr>
-        <?php foreach ($filtered_goalscorers as $goalscorer): ?>
-            <?php if ($goalscorer['GoalsScored'] > 0): ?>
-                <tr>
-                    <td><?php echo $goalscorer['PlayerName']; ?></td>
-                    <td><?php echo $goalscorer['TeamName']; ?></td>
-                    <td><?php echo $goalscorer['GoalsScored']; ?></td>
-                </tr>
-            <?php endif; ?>
-        <?php endforeach; ?>
+    <table id="top-scorers-table">
+        <thead>
+            <tr>
+                <th>Player Name</th>
+                <th>Team</th>
+                <th>Goals Scored</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($filtered_goalscorers as $goalscorer): ?>
+                <?php if ($goalscorer['GoalsScored'] > 0): ?>
+                    <tr class="clickable-row" data-href="player_fixtures.php?player_id=<?php echo $goalscorer['PlayerID']; ?>">
+                        <td><?php echo $goalscorer['PlayerName']; ?></td>
+                        <td><?php echo $goalscorer['TeamName']; ?></td>
+                        <td><?php echo $goalscorer['GoalsScored']; ?></td>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </tbody>
     </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var table = document.getElementById("top-scorers-table");
+            var rows = table.getElementsByTagName("tr");
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                row.addEventListener("click", function() {
+                    var href = this.dataset.href;
+                    if (href) {
+                        window.location.href = href;
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

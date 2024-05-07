@@ -99,7 +99,6 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
 </head>
 <body>
-    <h2>League Table Pie Chart</h2>
     <ul>
         <li><a href="league_table.php">League Table</a></li>
         <li><a href="add_results.php">Add Results</a></li>
@@ -113,6 +112,7 @@ $conn->close();
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
+    <h2>League Table Pie Chart</h2>
     <!-- Canvas element to render the pie chart -->
     <canvas id="leagueTablePieChart" width="400" height="400"></canvas>
 

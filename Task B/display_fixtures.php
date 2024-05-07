@@ -25,11 +25,10 @@ $conn->close(); // Close the database connection after fetching data
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Fixtures</title> <!-- Title of the webpage -->
-    <link rel="stylesheet" href="styles.css"> <!-- Link to an external stylesheet -->
+    <title>Display Fixtures</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Fixtures</h2> <!-- Heading for the page -->
     <ul>
         <!-- List of navigation links to other pages -->
         <li><a href="league_table.php">League Table</a></li>
@@ -44,36 +43,53 @@ $conn->close(); // Close the database connection after fetching data
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
-    <!-- HTML for fixture display -->
-<table border="1" cellpadding="5" cellspacing="0">
-    <tr>
-        <th>FixtureID</th>
-        <th>Home Team</th>
-        <th>Away Team</th>
-        <th>Date</th>
-        <th>Result</th>
-    </tr>
-    <?php foreach ($fixtures as $fixture): ?>
-        <!-- Add a class to the row for styling -->
-        <tr class="clickable-row" data-href="fixture_outcome.php?fixture_id=<?php echo $fixture['FixtureID']; ?>">
-            <td><?php echo $fixture['FixtureID']; ?></td>
-            <td><?php echo $fixture['HomeTeam']; ?></td>
-            <td><?php echo $fixture['AwayTeam']; ?></td>
-            <td><?php echo $fixture['Date']; ?></td>
-            <td><?php echo $fixture['Result']; ?></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
-
-<!-- JavaScript to make rows clickable -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var rows = document.querySelectorAll(".clickable-row"); // Select all rows with the class "clickable-row"
-        rows.forEach(function(row) {
-            row.addEventListener("click", function() {
-                var href = row.getAttribute("data-href"); // Get the URL from the "data-href" attribute
-                window.location.href = href; // Navigate to the URL when the row is clicked
+    <h2>Fixtures</h2>
+    <?php
+    // Initialize variable to store previous date
+    $prevDate = null;
+    // Loop through fixtures to display them grouped by date
+    foreach ($fixtures as $fixture) {
+        // Get the date of the current fixture
+        $currDate = $fixture['Date'];
+        // Check if it's a new date
+        if ($currDate !== $prevDate) {
+            // If it's a new date, close the previous table if it exists
+            if ($prevDate !== null) {
+                echo '</table>';
+            }
+            // Display the date as a heading
+            echo '<h3>' . $currDate . '</h3>';
+            // Open a new table for fixtures of the current date
+            echo '<table border="1" cellpadding="5" cellspacing="0">
+                <tr>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Result</th>
+                </tr>';
+        }
+        // Display the fixture row
+        echo '<tr class="clickable-row" data-href="fixture_outcome.php?fixture_id=' . $fixture['FixtureID'] . '">
+            <td>' . $fixture['HomeTeam'] . '</td>
+            <td>' . $fixture['AwayTeam'] . '</td>
+            <td>' . $fixture['Result'] . '</td>
+        </tr>';
+        // Update the previous date
+        $prevDate = $currDate;
+    }
+    // Close the last table
+    echo '</table>';
+    ?>
+    <!-- JavaScript to make rows clickable -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var rows = document.querySelectorAll(".clickable-row");
+            rows.forEach(function(row) {
+                row.addEventListener("click", function() {
+                    var href = row.getAttribute("data-href");
+                    window.location.href = href;
+                });
             });
         });
-    });
-</script>
+    </script>
+</body>
+</html>

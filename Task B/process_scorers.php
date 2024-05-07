@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->close();
         
         // Redirect to a success page or perform any other actions
-        header("Location: success.php");
+        header("Location: add_scorers.php");
         exit();
     } else {
         // Handle form validation errors

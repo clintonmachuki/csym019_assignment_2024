@@ -46,7 +46,6 @@ $conn->close(); // Close the database connection after fetching data
     <link rel="stylesheet" href="styles.css"> <!-- Link to an external stylesheet -->
 </head>
 <body>
-    <h2>Fixtures</h2> <!-- Heading for the page -->
     <ul>
         <!-- List of navigation links to other pages -->
         <li><a href="league_table.php">League Table</a></li>
@@ -61,6 +60,7 @@ $conn->close(); // Close the database connection after fetching data
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
+    <h2>Fixtures</h2> <!-- Heading for the page -->
     <?php
     // Display status message if provided in the URL
     if (isset($_GET['status'])) { // Check if 'status' parameter is set in the URL

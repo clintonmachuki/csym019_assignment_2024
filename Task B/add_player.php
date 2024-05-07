@@ -67,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form has been submit
     <link rel="stylesheet" href="styles.css"> <!-- Include stylesheet -->
 </head>
 <body>
-    <h2>Add New Player</h2>
     <ul>
         <!-- List of navigation links to other pages -->
         <li><a href="league_table.php">League Table</a></li>
@@ -82,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form has been submit
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
+    <h2>Add New Player</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div>
             <label>Name</label> <!-- Input field for player's name -->

@@ -50,7 +50,6 @@ $conn->close(); // Close the database connection
     <link rel="stylesheet" href="styles.css"> <!-- Include stylesheet -->
 </head>
 <body>
-    <h2>Add Scorers</h2>
     <ul>
         <!-- List of navigation links to other pages -->
         <li><a href="league_table.php">League Table</a></li>
@@ -65,6 +64,7 @@ $conn->close(); // Close the database connection
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
+    <h2>Add Scorers</h2>
     <form action="process_scorers.php" method="POST" id="scorersForm"> <!-- Form to add scorers -->
         <label for="fixture">Select Fixture:</label>
         <select id="fixture" name="fixture" required> <!-- Dropdown to select fixture -->

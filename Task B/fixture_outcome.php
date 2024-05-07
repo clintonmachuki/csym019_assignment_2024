@@ -49,24 +49,23 @@ $conn->close(); // Close the database connection after fetching data
 </head>
 <body>
     <div class="container">
-        <h2 class="heading">Fixture Outcome</h2>
         <ul>
-        <!-- List of navigation links to other pages -->
-        <li><a href="league_table.php">League Table</a></li>
-        <li><a href="add_results.php">Add Results</a></li>
-        <li><a href="add_scorers.php">Add Scorers</a></li>
-        <li><a href="top_scorers.php">Top Scorers</a></li>
-        <li><a href="pie.php">Pie Chart</a></li>
-        <li><a href="statistics.php">Statistics</a></li>
-        <li><a href="display_fixtures.php">Display Fixtures</a></li>
-        <li><a href="fixtures.php">Fixtures</a></li>
-        <li><a href="add_player.php">Add Player</a></li>
-        <li><a href="teams_input.php">Teams Input</a></li>
-        <li><a href="register_admin.html">Register admin</a></li>
-    </ul>
+            <!-- List of navigation links to other pages -->
+            <li><a href="league_table.php">League Table</a></li>
+            <li><a href="add_results.php">Add Results</a></li>
+            <li><a href="add_scorers.php">Add Scorers</a></li>
+            <li><a href="top_scorers.php">Top Scorers</a></li>
+            <li><a href="pie.php">Pie Chart</a></li>
+            <li><a href="statistics.php">Statistics</a></li>
+            <li><a href="display_fixtures.php">Display Fixtures</a></li>
+            <li><a href="fixtures.php">Fixtures</a></li>
+            <li><a href="add_player.php">Add Player</a></li>
+            <li><a href="teams_input.php">Teams Input</a></li>
+            <li><a href="register_admin.html">Register admin</a></li>
+        </ul>
+        <h2 class="heading">Fixture Outcome</h2>
         <div class="fixture-details">
             <h3>Fixture Details</h3>
-            <p><strong>FixtureID:</strong> <?php echo $fixture['FixtureID']; ?></p>
             <p><strong>Home Team:</strong> <?php echo $fixture['HomeTeam']; ?></p>
             <p><strong>Away Team:</strong> <?php echo $fixture['AwayTeam']; ?></p>
             <p><strong>Date:</strong> <?php echo $fixture['Date']; ?></p>
@@ -77,7 +76,7 @@ $conn->close(); // Close the database connection after fetching data
             <h3>Goal Scorers</h3>
             <ul class="scorers-list">
                 <?php foreach ($goal_scorers as $scorer): ?>
-                    <li><?php echo $scorer['PlayerName']; ?> (<?php echo $scorer['TeamName']; ?>)</li> <!-- Display goal scorers and their teams -->
+                    <li><?php echo $scorer['PlayerName']; ?> (<?php echo $scorer['TeamName']; ?>) - <?php echo $scorer['goals']; ?> goals</li> <!-- Display goal scorers, their teams, and the number of goals -->
                 <?php endforeach; ?>
             </ul>
         </div>

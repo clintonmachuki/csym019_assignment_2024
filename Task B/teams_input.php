@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Add New Team</h2>
     <ul>
         <!-- List of navigation links to other pages -->
         <li><a href="league_table.php">League Table</a></li>
@@ -44,6 +43,7 @@
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
+    <h2>Add New Team</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
         <label for="team_name">Team Name:</label>
         <input type="text" id="team_name" name="team_name" required><br><br>
