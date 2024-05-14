@@ -163,3 +163,10 @@ label {
     font-weight: bold;
 }
 
+.table-container {
+    text-align: center; /* Center-align the table */
+    max-width: 70%; /* Limit maximum width of the table container */
+    margin: 0 auto; /* Center the table container horizontally */
+}
+
+

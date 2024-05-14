@@ -63,15 +63,17 @@ $conn->close(); // Close the database connection after fetching data
             echo '<table border="1" cellpadding="5" cellspacing="0">
                 <tr>
                     <th>Home Team</th>
-                    <th>Away Team</th>
                     <th>Result</th>
+                    <th>Away Team</th>
+                    
                 </tr>';
         }
         // Display the fixture row
         echo '<tr class="clickable-row" data-href="fixture_outcome.php?fixture_id=' . $fixture['FixtureID'] . '">
             <td>' . $fixture['HomeTeam'] . '</td>
-            <td>' . $fixture['AwayTeam'] . '</td>
             <td>' . $fixture['Result'] . '</td>
+            <td>' . $fixture['AwayTeam'] . '</td>
+            
         </tr>';
         // Update the previous date
         $prevDate = $currDate;

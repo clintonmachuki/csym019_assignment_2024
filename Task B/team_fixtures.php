@@ -65,14 +65,15 @@ $conn->close(); // Close the database connection after fetching data
     <table border="1"> <!-- Table to display the team fixtures -->
         <tr>
             <th>Home Team</th>
-            <th>Away Team</th>
             <th>Result</th>
+            <th>Away Team</th>
+            
         </tr>
         <?php foreach ($fixtures as $fixture): ?> <!-- Loop through fixtures -->
             <tr class="clickable-row" data-href="fixture_outcome.php?fixture_id=<?php echo $fixture['FixtureID']; ?>">
                 <td><?php echo $teamNames[$fixture['HomeTeamID']]; ?></td> <!-- Display Home Team Name -->
-                <td><?php echo $teamNames[$fixture['AwayTeamID']]; ?></td> <!-- Display Away Team Name -->
                 <td><?php echo $fixture['Result']; ?></td> <!-- Display Result -->
+                <td><?php echo $teamNames[$fixture['AwayTeamID']]; ?></td> <!-- Display Away Team Name -->
             </tr>
         <?php endforeach; ?> <!-- End of fixture loop -->
     </table>

@@ -124,6 +124,7 @@ $conn->close(); // Close the database connection after fetching data
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
     <h2>League Table</h2> <!-- Heading for the league table -->
+    <div class="table-container">
     <table border="1" id="league-table"> <!-- Table to display the league table -->
         <tr>
             <th>Position</th>
@@ -154,6 +155,7 @@ $conn->close(); // Close the database connection after fetching data
             <?php $position++; ?> <!-- Increment position counter -->
         <?php endforeach; ?> <!-- End of team loop -->
     </table>
+        </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
