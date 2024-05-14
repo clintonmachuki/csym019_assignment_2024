@@ -1,125 +1,138 @@
-/* used to apply styles to the body */
+/* Used to apply styles to the body */
 body {
-    font-family: Arial, sans-serif; /* used to set the font family for the entire document */
-    background-color: #f0f0f0; /* used to set the background color of the body */
-    padding: 10px; /* used to add padding around the content of the body */
+    font-family: Arial, sans-serif; /* Used to set the font family for the entire document */
+    background-color: #f0f0f0; /* Used to set the background color of the body */
+    padding: 10px; /* Used to add padding around the content of the body */
 }
 
-/* used to apply style to the heading */
+/* Used to apply style to the heading */
 h1 {
     text-align: center; /* Center-align the heading */
-    color: #333; /* used to set the color of the heading text */
+    color: #2c3e50; /* Used to set the color of the heading text */
 }
 
-/* used to apply style to the league table container */
+/* Used to apply style to the league table container */
 #league-table {
-    margin-top: 20px; /* used to add margin space on top of the league table */
-    background-color: #fff; /* used to set the background color of the league table container */
-    border: 1px solid #ccc; /* used to add a border around the league table container */
-    border-radius: 5px; /* used to add rounded corners to the league table container */
-    padding: 10px; /* used to add padding inside the league table container */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* used to add a box shadow to create a subtle elevation effect */
+    margin-top: 20px; /* Used to add margin space on top of the league table */
+    background-color: #ffffff; /* Used to set the background color of the league table container */
+    border: 1px solid #3498db; /* Used to add a border around the league table container */
+    border-radius: 5px; /* Used to add rounded corners to the league table container */
+    padding: 10px; /* Used to add padding inside the league table container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Used to add a box shadow to create a subtle elevation effect */
+    margin-top: 20px; /* Used to add margin space above the league table */
+    margin-bottom: 20px; /* Used to add margin space below the league table */
 }
 
-/* used to apply styles to the table */
+/* Used to apply styles to the table */
 #league-table table {
     width: 100%; /* Make the table fill the entire width of its container */
     border-collapse: collapse; /* Collapse the borders of table cells */
 }
 
-/* used to apply styles to the table header */
+/* Used to apply styles to the table header */
 #league-table th {
-    background-color: #f2f2f2; /* used to set the background color of table header cells */
-    border: 1px solid #ccc; /* used to add a border around table header cells */
-    padding: 8px; /* used to add padding inside table header cells */
-    text-align: left; /* Left-align the text inside table header cells */
+    background-color: #3498db; /* Used to set the background color of table header cells */
+    border: 1px solid #2980b9; /* Used to add a border around table header cells */
+    padding: 8px; /* Used to add padding inside table header cells */
+    text-align: center; /* Used to center the text inside table header cells */
+    color: #ffffff; /* Used to set the color of the text inside table header cells */
 }
 
-/* used to apply styles to the table data cells */
+/* Used to apply styles to the table data cells */
 #league-table td {
-    border: 1px solid #ccc; /* used to add a border around table data cells */
-    padding: 8px; /* used to add padding inside table data cells */
+    border: 1px solid #ccc; /* Used to add a border around table data cells */
+    padding: 8px; /* Used to add padding inside table data cells */
 }
 
-/* used to apply style to alternate rows */
-#league-table tr:nth-child(even) {
-    background-color: #f9f9f9; /* used to set background color for alternate rows */
+/* CSS for form circles */
+#league-table .form-circles span {
+    font-size: 20px;
+    margin-right: 2px;
 }
 
-/* used to apply style to team icons */
+/* Used to apply style to alternate rows */
+#league-table tbody tr:nth-child(even) {
+    background-color: #ecf0f1; /* Used to set background color for alternate rows */
+}
+
+/* Used to apply style to team icons */
 #league-table img {
-    width: 38px; /* used to set the width of team icons */
-    height: 38px; /* used to set the height of team icons */
+    width: 38px; /* Used to set the width of team icons */
+    height: 38px; /* Used to set the height of team icons */
     display: block; /* Make team icons block-level elements */
     margin: 0 auto; /* Center-align team icons horizontally */
 }
 
-/* used to apply styles to the fixture table container */
+/* Used to apply styles to the fixture table container */
 #EPL-fixture {
-    margin-top: 20px; /* used to add margin space on top of the fixture table */
-    background-color: #fff; /* used to set the background color of the fixture table container */
-    border: 1px solid #ccc; /* used to add a border around the fixture table container */
-    border-radius: 5px; /* used to add rounded corners to the fixture table container */
-    padding: 10px; /* used to add padding inside the fixture table container */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* used to add a box shadow to create a subtle elevation effect */
+    margin-top: 20px; /* Used to add margin space on top of the fixture table */
+    background-color: #ffffff; /* Used to set the background color of the fixture table container */
+    border: 1px solid #3498db; /* Used to add a border around the fixture table container */
+    border-radius: 5px; /* Used to add rounded corners to the fixture table container */
+    padding: 10px; /* Used to add padding inside the fixture table container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Used to add a box shadow to create a subtle elevation effect */
+    margin-bottom: 20px; /* Used to add margin space below the fixture table */
 }
 
-/* used to apply styles to the fixture table */
+/* Used to apply styles to the fixture table */
 #EPL-fixture table {
-    width: 100%; /* used to make the table fill the entire width of its container */
-    border-collapse: collapse; /* Collapses the borders of table cells */
-}
-
-/* used to apply style to the fixture table header */
-#EPL-fixture th {
-    background-color: #f2f2f2; /* used to set the background color of table header cells */
-    border: 1px solid #ccc; /* used to add a border around table header cells */
-    padding: 8px; /* used to add padding inside table header cells */
-    text-align: left; /* Left-align the text inside table header cells */
-}
-
-/* used to apply style to the fixture table data cells */
-#EPL-fixture td {
-    border: 1px solid #ccc; /* used to add a border around table data cells */
-    padding: 8px; /* used to add padding inside table data cells */
-}
-
-/*  used to style alternate rows */
-#EPL-fixture tr:nth-child(even) {
-    background-color: #f9f9f9; /* used to set background color for alternate rows */
-}
-
-/* used to style the top scorers container */
-#top-scorers {
-    margin-top: 20px; /* used to add margin space on top of the top scorers container */
-    background-color: #fff; /* used to set the background color of the top scorers container */
-    border: 1px solid #ccc; /* used to add a border around the top scorers container */
-    border-radius: 5px; /* used to add rounded corners to the top scorers container */
-    padding: 10px; /* used to add padding inside the top scorers container */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* used to add a box shadow to create a subtle elevation effect */
-}
-
-/*  used to style the table inside the top scorers container */
-#top-scorers table {
-    width: 100%; /* Make the table fill the entire width of its container */
+    width: 100%; /* Used to make the table fill the entire width of its container */
     border-collapse: collapse; /* Collapse the borders of table cells */
 }
 
-/*  used to stylethe top scorers table header */
-#top-scorers th {
-    background-color: #f2f2f2; /* used to set the background color of table header cells */
-    border: 1px solid #ccc; /* used to add a border around table header cells */
-    padding: 8px; /* used to add padding inside table header cells */
+/* Used to apply style to the fixture table header */
+#EPL-fixture th {
+    background-color: #3498db; /* Used to set the background color of table header cells */
+    border: 1px solid #2980b9; /* Used to add a border around table header cells */
+    padding: 8px; /* Used to add padding inside table header cells */
     text-align: left; /* Left-align the text inside table header cells */
+    color: #ffffff; /* Used to set the color of the text inside table header cells */
 }
 
-/*  used to style the top scorers table data cells */
+/* Used to apply style to the fixture table data cells */
+#EPL-fixture td {
+    border: 1px solid #ccc; /* Used to add a border around table data cells */
+    padding: 8px; /* Used to add padding inside table data cells */
+}
+
+/* Used to style alternate rows */
+#EPL-fixture tr:nth-child(even) {
+    background-color: #ecf0f1; /* Used to set background color for alternate rows */
+}
+
+/* Used to style the top scorers container */
+#top-scorers {
+    margin-top: 20px; /* Used to add margin space on top of the top scorers container */
+    background-color: #ffffff; /* Used to set the background color of the top scorers container */
+    border: 1px solid #3498db; /* Used to add a border around the top scorers container */
+    border-radius: 5px; /* Used to add rounded corners to the top scorers container */
+    padding: 10px; /* Used to add padding inside the top scorers container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Used to add a box shadow to create a subtle elevation effect */
+}
+
+/* Used to style the table inside the top scorers container */
+#top-scorers table {
+    width: 100%; /* Make the table fill the entire width of its container */
+    border-collapse: collapse; /* Collapse the borders of table cells */
+    margin-bottom: 20px; /* Used to add margin space below the top scorers table */
+}
+
+/* Used to style the top scorers table header */
+#top-scorers th {
+    background-color: #3498db; /* Used to set the background color of table header cells */
+    border: 1px solid #2980b9; /* Used to add a border around table header cells */
+    padding: 8px; /* Used to add padding inside table header cells */
+    text-align: left; /* Left-align the text inside table header cells */
+    color: #ffffff; /* Used to set the color of the text inside table header cells */
+}
+
+/* Used to style the top scorers table data cells */
 #top-scorers td {
-    border: 1px solid #ccc; /* used to add a border around table data cells */
-    padding: 8px; /* used to add padding inside table data cells */
+    border: 1px solid #ccc; /* Used to add a border around table data cells */
+    padding: 8px; /* Used to add padding inside table data cells */
 }
 
-/*  used to style the alternate rows */
+/* Used to style the alternate rows */
 #top-scorers tr:nth-child(even) {
-    background-color: #f9f9f9; /* used to set background color for alternate rows */
+    background-color: #ecf0f1; /* Used to set background color for alternate rows */
 }

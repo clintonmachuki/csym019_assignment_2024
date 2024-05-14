@@ -31,7 +31,7 @@ function generateLeagueTable(fixtures) {
         // Update home team statistics
         if (!teams[homeTeam]) {
             // Initialize team statistics if not already present
-            teams[homeTeam] = { goalsFor: 0, goalsAgainst: 0, wins: 0, draws: 0, losses: 0, points: 0 };
+            teams[homeTeam] = { goalsFor: 0, goalsAgainst: 0, wins: 0, draws: 0, losses: 0, points: 0, form: [] };
         }
         // Update goals scored and conceded for home team
         teams[homeTeam].goalsFor += homeScore;
@@ -40,27 +40,41 @@ function generateLeagueTable(fixtures) {
         if (homeScore > awayScore) {
             teams[homeTeam].wins += 1;
             teams[homeTeam].points += 3;
+            teams[homeTeam].form.push('W'); // Add 'W' for win to form array
         } else if (homeScore < awayScore) {
             teams[homeTeam].losses += 1;
+            teams[homeTeam].form.push('L'); // Add 'L' for loss to form array
         } else {
             teams[homeTeam].draws += 1;
             teams[homeTeam].points += 1;
+            teams[homeTeam].form.push('D'); // Add 'D' for draw to form array
         }
 
         // Update away team statistics (similar logic as above)
         if (!teams[awayTeam]) {
-            teams[awayTeam] = { goalsFor: 0, goalsAgainst: 0, wins: 0, draws: 0, losses: 0, points: 0 };
+            teams[awayTeam] = { goalsFor: 0, goalsAgainst: 0, wins: 0, draws: 0, losses: 0, points: 0, form: [] };
         }
         teams[awayTeam].goalsFor += awayScore;
         teams[awayTeam].goalsAgainst += homeScore;
         if (awayScore > homeScore) {
             teams[awayTeam].wins += 1;
             teams[awayTeam].points += 3;
+            teams[awayTeam].form.push('W'); // Add 'W' for win to form array
         } else if (awayScore < homeScore) {
             teams[awayTeam].losses += 1;
+            teams[awayTeam].form.push('L'); // Add 'L' for loss to form array
         } else {
             teams[awayTeam].draws += 1;
             teams[awayTeam].points += 1;
+            teams[awayTeam].form.push('D'); // Add 'D' for draw to form array
+        }
+
+        // Limit form array to last 5 matches
+        if (teams[homeTeam].form.length > 5) {
+            teams[homeTeam].form.shift(); // Remove oldest result if more than 5 matches
+        }
+        if (teams[awayTeam].form.length > 5) {
+            teams[awayTeam].form.shift(); // Remove oldest result if more than 5 matches
         }
     });
 
@@ -89,7 +103,7 @@ function generateLeagueTable(fixtures) {
 
     // Generate HTML markup for the league table
     var tableHTML = '<table>';
-    tableHTML += '<thead><tr><th>Position</th><th>Team Name</th><th>Played</th><th>W</th><th>D</th><th>L</th><th>Goals For</th><th>Goals Against</th><th>Goal Difference</th><th>Points</th></tr></thead>'; // Create table header row
+    tableHTML += '<thead><tr><th>Position</th><th>Team Name</th><th>Played</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Points</th><th>Form</th></tr></thead>'; // Create table header row
     tableHTML += '<tbody>'; // Start table body
     teamsArray.forEach(function(team, index) {
         // Calculate team position
@@ -106,15 +120,28 @@ function generateLeagueTable(fixtures) {
         tableHTML += '<td>' + team.info.goalsAgainst + '</td>'; // Add goals conceded
         tableHTML += '<td>' + (team.info.goalsFor - team.info.goalsAgainst) + '</td>'; // Add goal difference
         tableHTML += '<td>' + team.info.points + '</td>'; // Add points
+        // Add form column with color-coded results
+        tableHTML += '<td class="form-circles">';
+        team.info.form.forEach(function(result) {
+            if (result === 'W') {
+                tableHTML += '<span style="color:green">&#9679;</span>'; // Green circle for win
+            } else if (result === 'L') {
+                tableHTML += '<span style="color:red">&#9679;</span>'; // Red circle for loss
+            } else {
+                tableHTML += '<span>&#9679;</span>'; // Default circle for draw
+        }
+        });
+        tableHTML += '</td>'; // Close form column
         tableHTML += '</tr>'; // Close table row
     });
     tableHTML += '</tbody>'; // Close table body
-    tableHTML += '</table>'; // Close table
+    tableHTML +='</table>'; // Close table
 
     // Update the content of the league table div with the generated table HTML
     var leagueTableDiv = document.getElementById('league-table');
     leagueTableDiv.innerHTML = tableHTML;
 }
+
 
 
 // Function to validate data against a JSON schema
