@@ -136,3 +136,39 @@ h1 {
 #top-scorers tr:nth-child(even) {
     background-color: #ecf0f1; /* Used to set background color for alternate rows */
 }
+
+/* Main menu container */
+.menu {
+    background-color: #34495e; /* Background color */
+    padding: 10px 0; /* Padding above and below the menu */
+    text-align: center; /* Center-align the menu items */
+    display: inline-block; /* Shrink-wrap the container to fit its contents */
+    margin: 0 auto; /* Center the menu horizontally */
+}
+
+/* List items in the menu */
+.menu ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: inline-block; /* Display the list horizontally */
+}
+
+/* Individual menu items */
+.menu li {
+    display: inline-block; /* Display items horizontally */
+    margin-right: 20px; /* Spacing between menu items */
+}
+
+/* Link styles */
+.menu li a {
+    color: #ffffff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px; /* Spacing inside each menu item */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+.menu li a:hover {
+    background-color: #2c3e50; /* Darker background color on hover */
+}
