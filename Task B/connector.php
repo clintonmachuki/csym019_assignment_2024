@@ -5,6 +5,7 @@ session_start(); // Start a new session
 $host = 'localhost'; // Hostname of the database server
 $username = 'root'; // Username to connect to the database
 $password = ''; // Password to connect to the database
+///this are default logins to sql
 $database = 'premier_league'; // Name of the database
 
 // Connect to the database
