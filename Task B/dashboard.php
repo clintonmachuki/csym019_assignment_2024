@@ -17,6 +17,7 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body>
+<h2>Dashboard</h2>
 <div class="container">
 <ul class="dashboard-grid"> <!-- Add a class to the ul element for styling -->
         <li><a href="league_table.php">League Table</a></li>
