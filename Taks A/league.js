@@ -159,21 +159,34 @@ function generateLeagueTable(fixtures) {
 // Function to validate data against a JSON schema
 function validateData(data) {
     var xhr = new XMLHttpRequest();
+    
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
+                // Parse the JSON schema retrieved from the file
                 var schema = JSON.parse(xhr.responseText);
+                
+                // Create an Ajv instance
                 var ajv = new Ajv();
+                
+                // Compile the schema
                 var validate = ajv.compile(schema);
+                
+                // Validate the data against the schema
                 var valid = validate(data);
+                
+                // If validation fails, log the errors
                 if (!valid) {
                     console.error('Data validation error:', validate.errors);
                 }
             } else {
+                // Log error if unable to load the schema
                 console.error('Error loading schema:', xhr.status);
             }
         }
     };
+    
+    // Fetch the JSON schema from the file
     xhr.open('GET', 'Leagueschema.json', true);
     xhr.send();
 }
