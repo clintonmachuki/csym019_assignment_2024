@@ -240,12 +240,12 @@ footer {
     background-color: #333; /* Background color for the footer */
     color: #fff; /* Text color for the footer */
     text-align: center; /* Center-align the content of the footer */
-    padding: 0px 0; /* Padding top and bottom of the footer */
-    position: fixed; /* Fix the footer at the bottom of the viewport */
-    bottom: 0; /* Align the footer at the bottom */
+    padding: 10px 0; /* Padding top and bottom of the footer */
     width: 100%; /* Full width of the viewport */
     border-top: 10px solid #fff; /* Solid border at the top of the footer */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin-top: 20px; /* Optional: Add some space above the footer */
 }
+
 
 
