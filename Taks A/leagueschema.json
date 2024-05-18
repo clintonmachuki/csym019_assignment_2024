@@ -21,33 +21,6 @@
               "required": ["homeTeam", "awayTeam", "date", "score"]
           }
       },
-      // An array containing information about the Premier League table
-      "premierLeagueTable": {
-          "type": "array",
-          "items": {
-              "type": "object",
-              // Properties for each team in the table
-              "properties": {
-                  "name": { "type": "string" }, // Name of the team
-                  "info": {
-                      "type": "object",
-                      // Additional information about the team's performance
-                      "properties": {
-                          "wins": { "type": "integer" }, // Number of wins
-                          "draws": { "type": "integer" }, // Number of draws
-                          "losses": { "type": "integer" }, // Number of losses
-                          "icons": { "type": "string" }, // Icons representing team's performance
-                          "goalsFor": { "type": "integer" }, // Number of goals scored
-                          "goalsAgainst": { "type": "integer" } // Number of goals conceded
-                      },
-                      // Required properties for team's performance info
-                      "required": ["wins", "draws", "losses", "goalsFor", "goalsAgainst"]
-                  }
-              },
-              // Required properties for each team
-              "required": ["name", "info"]
-          }
-      },
       // An array containing information about the top scorers in the Premier League
       "premierLeagueTopScorers": {
           "type": "array",
