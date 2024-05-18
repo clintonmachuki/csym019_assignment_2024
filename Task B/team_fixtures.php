@@ -46,19 +46,19 @@ $conn->close(); // Close the database connection after fetching data
     <link rel="stylesheet" href="styles.css"> <!-- Link to an external stylesheet -->
 </head>
 <body>
-    <ul>
+<ul>
         <!-- List of navigation links to other pages -->
-        <li><a href="league_table.php">League Table</a></li>
-        <li><a href="add_results.php">Add Results</a></li>
-        <li><a href="add_scorers.php">Add Scorers</a></li>
-        <li><a href="top_scorers.php">Top Scorers</a></li>
-        <li><a href="pie.php">Pie Chart</a></li>
-        <li><a href="statistics.php">Statistics</a></li>
-        <li><a href="display_fixtures.php">Display Fixtures</a></li>
-        <li><a href="fixtures.php">Fixtures</a></li>
-        <li><a href="add_player.php">Add Player</a></li>
-        <li><a href="teams_input.php">Teams Input</a></li>
-        <li><a href="register_admin.html">Register admin</a></li>
+        <li id="league_table"><a href="league_table.php">League Table</a></li>
+        <li id="add_results"><a href="add_results.php">Add Results</a></li>
+        <li id="add_scorers"><a href="add_scorers.php">Add Scorers</a></li>
+        <li id="top_scorers"><a href="top_scorers.php">Top Scorers</a></li>
+        <li id="statistics"><a href="statistics.php">Statistics</a></li>
+        <li id="display_fixtures"><a href="display_fixtures.php">Display Fixtures</a></li>
+        <li id="fixtures"><a href="fixtures.php">Fixtures</a></li>
+        <li id="add_player"><a href="add_player.php">Add Player</a></li>
+        <li id="teams_input"><a href="teams_input.php">Teams Input</a></li>
+        <li id="Login"><a href="Login.html">Login</a></li>
+        <li id="register_admin"><a href="register_admin.html">Register admin</a></li>
     </ul>
     <h2>Team Fixtures</h2> <!-- Heading for the team fixtures -->
     <div class="table-container">
@@ -84,6 +84,35 @@ $conn->close(); // Close the database connection after fetching data
     </footer>
 </body>
 </html>
+
+<script>
+    // Check if the cookie named "username" exists
+    const isLoggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('username='));
+
+    // Get the list items corresponding to the menu items you want to hide/deny access to
+    const addResults = document.getElementById('add_results');
+    const addScorers = document.getElementById('add_scorers');
+    const fixtures = document.getElementById('fixtures');
+    const addPlayer = document.getElementById('add_player');
+    const teamsInput = document.getElementById('teams_input');
+    const registerAdmin = document.getElementById('register_admin');
+
+    if (!isLoggedIn) {
+        // User is not logged in, hide menu items and deny access to pages
+        addResults.style.display = 'none'; // Hide "Add Results" menu item
+        addScorers.style.display = 'none'; // Hide "Add Scorers" menu item
+        fixtures.style.display = 'none'; // Hide "Fixtures" menu item
+        addPlayer.style.display = 'none'; // Hide "Add Player" menu item
+        teamsInput.style.display = 'none'; // Hide "Teams Input" menu item
+        registerAdmin.style.display = 'none'; // Hide "Register admin" menu item
+
+        // Redirect user to login page if they try to access certain pages directly
+        const restrictedPages = ['add_results.php', 'add_scorers.php', 'fixtures.php', 'add_player.php', 'teams_input.php', 'register_admin.html'];
+        if (restrictedPages.includes(window.location.pathname.split('/').pop())) {
+            window.location.href = 'login.html'; // Redirect to login page
+        }
+    }
+</script>
 
 
 <!-- JavaScript to make rows clickable -->

@@ -105,13 +105,13 @@ $conn->close();
         <li id="add_results"><a href="add_results.php">Add Results</a></li>
         <li id="add_scorers"><a href="add_scorers.php">Add Scorers</a></li>
         <li id="top_scorers"><a href="top_scorers.php">Top Scorers</a></li>
-        <li id="pie"><a href="pie.php">Pie Chart</a></li>
         <li id="statistics"><a href="statistics.php">Statistics</a></li>
         <li id="display_fixtures"><a href="display_fixtures.php">Display Fixtures</a></li>
         <li id="fixtures"><a href="fixtures.php">Fixtures</a></li>
         <li id="add_player"><a href="add_player.php">Add Player</a></li>
         <li id="teams_input"><a href="teams_input.php">Teams Input</a></li>
         <li id="register_admin"><a href="register_admin.html">Register admin</a></li>
+        <li id="Login"><a href="Login.html">Login</a></li>
     </ul>
     <div class="container">
         <form id="teamComparisonForm">

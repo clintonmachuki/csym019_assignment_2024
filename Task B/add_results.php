@@ -50,7 +50,6 @@ $conn->close(); // Close the database connection
         <li><a href="add_results.php">Add Results</a></li>
         <li><a href="add_scorers.php">Add Scorers</a></li>
         <li><a href="top_scorers.php">Top Scorers</a></li>
-        <li><a href="pie.php">Pie Chart</a></li>
         <li><a href="statistics.php">Statistics</a></li>
         <li><a href="display_fixtures.php">Display Fixtures</a></li>
         <li><a href="fixtures.php">Fixtures</a></li>
