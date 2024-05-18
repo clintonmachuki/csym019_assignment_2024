@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <!-- Add any additional meta tags or stylesheets here -->
+</head>
+<body>
+    <!-- Message informing the user about the redirection -->
+    <p>This page will redirect automatically in <span id="countdown">5</span> seconds.</p>
+    <script>
+        // Function to redirect after a specified time
+        function redirectTo(url, delay) {
+            // Set timeout to redirect to the specified URL after the delay
+            setTimeout(function() {
+                window.location.href = url;
+            }, delay);
+        }
+
+        // Specify the URL to redirect to and the delay in milliseconds
+        var redirectUrl = "league_table.php"; // Change "league_table.php" to the URL of the page you want to redirect to
+        var redirectDelay = 3000; // Change time to the desired delay in milliseconds (3 seconds in this example)
+
+        // Update countdown text
+        var countdownElement = document.getElementById("countdown");
+        var countdown = parseInt(countdownElement.innerText);
+        // Update countdown every second
+        setInterval(function() {
+            countdown--;
+            if (countdown >= 0) {
+                countdownElement.innerText = countdown;
+            }
+        }, 1000);
+
+        // Redirect to the specified URL after the specified delay
+        redirectTo(redirectUrl, redirectDelay);
+    </script>
+</body>
+</html>

@@ -14,6 +14,7 @@
           },
           "required": ["homeTeam", "awayTeam", "date", "score"]
         }
+      }
       },
       "premierLeagueTopScorers": {
         "type": "array",

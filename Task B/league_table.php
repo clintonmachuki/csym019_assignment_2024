@@ -122,6 +122,7 @@ $conn->close(); // Close the database connection after fetching data
         <li id="add_player"><a href="add_player.php">Add Player</a></li>
         <li id="teams_input"><a href="teams_input.php">Teams Input</a></li>
         <li id="register_admin"><a href="register_admin.html">Register admin</a></li>
+        <li id="Login"><a href="Login.html">Login</a></li>
     </ul>
     </ul>
     <h2>League Table</h2> <!-- Heading for the league table -->

@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to be executed when data fetching and validation are complete
     function onDataFetchComplete(data) {
         // Check if the current page URL contains 'league.htm'
-        if (window.location.pathname.includes('league.htm')) {
+        if (window.location.pathname.includes('league.html')) {
             // If the URL contains 'league.htm', load the league table and fixtures table
             generateLeagueTable(data.footballScoresFixtures);
             populateFixturesTable(data.footballScoresFixtures);
