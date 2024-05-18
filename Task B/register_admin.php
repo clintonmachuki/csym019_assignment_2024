@@ -23,8 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: register_admin.html?error=1");
         exit();
     } else {
+        // Encrypt the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
         // Insert new admin user into the database
-        $sql = "INSERT INTO admin_users (username, password) VALUES ('$username', '$password')";
+        $sql = "INSERT INTO admin_users (username, password) VALUES ('$username', '$hashed_password')";
         if ($conn->query($sql) === TRUE) {
             // Registration successful, redirect to login page
             header("Location: login.html");

@@ -1,5 +1,4 @@
 <?php
-session_start(); // Start a new session
 
 // Database connection details
 $host = 'localhost'; // Hostname of the database server

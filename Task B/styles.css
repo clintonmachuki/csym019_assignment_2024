@@ -141,6 +141,7 @@ label {
     grid-auto-rows: minmax(100px, auto); /* Automatically adjust row height */
     gap: 20px;
     list-style-type: none;
+    text-align: center;
     padding: 0;
     margin: 0; /* Remove default margin */
     height: 100%; /* Make grid take up full height of body */
@@ -148,7 +149,7 @@ label {
 
 /* Style the dashboard grid items */
 .dashboard-grid li {
-    background-color: #f0f0f0;
+    background-color: #4CAF50;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -159,9 +160,11 @@ label {
 .dashboard-grid li a {
     text-decoration: none;
     color: #333;
+    text-align: center;
     font-size: 18px;
     font-weight: bold;
 }
+
 
 .table-container {
     text-align: center; /* Center-align the table */
@@ -230,6 +233,7 @@ canvas {
     height: auto; /* Maintain aspect ratio */
     margin: 20px auto; /* Center the charts horizontally with margin */
 }
+
 /* Footer styles: Styling for the footer section of the page */
 footer {
     background-color: #333; /* Background color for the footer */
@@ -242,3 +246,5 @@ footer {
     border-top: 10px solid #fff; /* Solid border at the top of the footer */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
+
+

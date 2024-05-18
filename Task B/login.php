@@ -1,13 +1,6 @@
 <?php
 session_start();
 
-// Check if user is already logged in
-if (isset($_SESSION['username'])) {
-    // Redirect to dashboard if already logged in
-    header("Location: dashboard.html");
-    exit();
-}
-
 include 'connector.php';
 
 // Handle form submission
@@ -16,29 +9,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Query to fetch user data based on username
-    $sql = "SELECT * FROM admin_users WHERE username=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql = "SELECT * FROM admin_users WHERE username='$username'";
+    $result = $conn->query($sql);
 
-    if ($result->num_rows == 1) { // If a single row is returned, the username exists
+    if ($result->num_rows == 1) {
+        // Username exists, verify password
         $row = $result->fetch_assoc();
-        $hashed_password = $row['password']; // Get the hashed password from the database
-        if (password_verify($password, $hashed_password)) { // Verify the password
-            // Password is correct, set session variables
-            $_SESSION['username'] = $username; // Store the username in the session variable
-            header("Location: dashboard.html"); // Redirect to the dashboard page upon successful login
-            exit(); // Terminate the script execution
+        if (password_verify($password, $row['password'])) {
+            // Password is correct, start session, set cookie, and redirect to dashboard
+            $_SESSION['username'] = $username;
+            setcookie("username", $username, time() + (86400 * 30), "/"); // Cookie lasts for 30 days
+            header("Location: dashboard.php");
+            exit();
         } else {
-            // Password is incorrect, redirect to login page with error message
-            header("Location: login.html?error=1"); // Redirect to the login page with an error parameter
-            exit(); // Terminate the script execution
+            // Incorrect password, redirect to login page with error message
+            header("Location: login.html?error=1");
+            exit();
         }
     } else {
         // Username not found, redirect to login page with error message
-        header("Location: login.html?error=2"); // Redirect to the login page with an error parameter
-        exit(); // Terminate the script execution
+        header("Location: login.html?error=2");
+        exit();
     }
 }
 

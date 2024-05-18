@@ -1,5 +1,12 @@
 <?php
 include 'connector.php'; // Include the database connector file
+session_start(); // Start the session to manage user session data
+
+// Check if the user is not logged in (session variable not set)
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html"); // Redirect to the login page
+    exit(); // Terminate the script execution
+}
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the request method is POST

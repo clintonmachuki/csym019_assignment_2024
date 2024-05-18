@@ -2,6 +2,14 @@
 // Include the connector file to establish a database connection
 include 'connector.php';
 
+session_start(); // Start the session to manage user session data
+
+// Check if the user is not logged in (session variable not set)
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html"); // Redirect to the login page
+    exit(); // Terminate the script execution
+}
+
 // Fetch fixtures from the database
 $sql = "SELECT FixtureID, HomeTeamID, AwayTeamID, Result, Date FROM Fixtures"; // SQL query to select fixtures from Fixtures table
 $result = $conn->query($sql); // Execute the query and store the result
@@ -88,5 +96,6 @@ $conn->close(); // Close the database connection
     <footer>
         <p>&copy; 2024 EPL. All rights reserved.</p>
     </footer>
+    
 </body>
 </html>

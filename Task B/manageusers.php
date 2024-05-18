@@ -2,6 +2,13 @@
 session_start();
 
 include 'connector.php';
+session_start(); // Start the session to manage user session data
+
+// Check if the user is not logged in (session variable not set)
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html"); // Redirect to the login page
+    exit(); // Terminate the script execution
+}
 
 // Handle form submissions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
