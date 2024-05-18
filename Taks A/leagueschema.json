@@ -1,42 +1,33 @@
 {
-  // Specifies the JSON Schema version being used
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  // Specifies that the root element is an object
-  "type": "object",
-  // Defines the properties of the root object
-  "properties": {
-      // An array containing information about football scores and fixtures
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
       "footballScoresFixtures": {
-          "type": "array",
-          "items": {
-              "type": "object",
-              // Properties for each fixture
-              "properties": {
-                  "homeTeam": { "type": "string" }, // Name of the home team
-                  "awayTeam": { "type": "string" }, // Name of the away team
-                  "date": { "type": "string", "format": "date" }, // Date of the fixture
-                  "score": { "type": "string" } // Score of the fixture
-              },
-              // Required properties for each fixture
-              "required": ["homeTeam", "awayTeam", "date", "score"]
-          }
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "homeTeam": { "type": "string" },
+            "awayTeam": { "type": "string" },
+            "date": { "type": "string", "format": "date" },
+            "score": { "type": "string" }
+          },
+          "required": ["homeTeam", "awayTeam", "date", "score"]
+        }
       },
-      // An array containing information about the top scorers in the Premier League
       "premierLeagueTopScorers": {
-          "type": "array",
-          "items": {
-              "type": "object",
-              // Properties for each top scorer
-              "properties": {
-                  "playerName": { "type": "string" }, // Name of the player
-                  "team": { "type": "string" }, // Name of the player's team
-                  "goalsScored": { "type": "integer" } // Number of goals scored by the player
-              },
-              // Required properties for each top scorer
-              "required": ["playerName", "team", "goalsScored"]
-          }
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "playerName": { "type": "string" },
+            "team": { "type": "string" },
+            "goalsScored": { "type": "integer" }
+          },
+          "required": ["playerName", "team", "goalsScored"]
+        }
       }
-  },
-  // Required properties for the root object
-  "required": ["footballScoresFixtures", "premierLeagueTable", "premierLeagueTopScorers"]
-}
+    },
+    "required": ["footballScoresFixtures", "premierLeagueTable", "premierLeagueTopScorers"]
+  }
+  
