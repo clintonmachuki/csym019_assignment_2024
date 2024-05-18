@@ -1,3 +1,4 @@
+<?php include 'session_checker.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
 </head>
+
 <body>
     <ul class="dashboard-grid"> <!-- Add a class to the ul element for styling -->
         <li><a href="league_table.php">League Table</a></li>
