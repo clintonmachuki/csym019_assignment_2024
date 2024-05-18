@@ -148,22 +148,23 @@ label {
 }
 
 /* Style the dashboard grid items */
-.dashboard-grid li {
-    background-color: #4CAF50;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.dashboard-grid li { /* Selects the <li> elements inside an element with the class "dashboard-grid" */
+    background-color: #4CAF50; /* Sets the background color to a shade of green */
+    padding: 20px; /* Adds 20 pixels of padding inside each grid item */
+    border-radius: 10px; /* Rounds the corners with a radius of 10 pixels */
+    text-align: center; /* Centers the text horizontally */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for a raised effect */
 }
 
 /* Style the links inside grid items */
-.dashboard-grid li a {
-    text-decoration: none;
-    color: #333;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+.dashboard-grid li a { /* Selects the <a> elements inside <li> elements that are inside an element with the class "dashboard-grid" */
+    text-decoration: none; /* Removes the underline from the links */
+    color: #333; /* Sets the text color to a dark gray */
+    text-align: center; /* Centers the text horizontally */
+    font-size: 18px; /* Sets the font size to 18 pixels */
+    font-weight: bold; /* Makes the text bold */
 }
+
 
 
 .table-container {

@@ -9,6 +9,7 @@ $database = 'premier_league'; // Name of the database
 
 // Connect to the database
 $conn = new mysqli($host, $username, $password, $database); // Create a new MySQLi object to establish a connection
+// This line creates a new MySQLi object which represents a connection to the MySQL database. It takes four parameters: hostname, username, password, and database name.
 
 // Check connection
 if ($conn->connect_error) { // Check if there is an error in establishing the connection

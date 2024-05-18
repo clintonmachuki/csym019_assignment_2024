@@ -21,12 +21,16 @@ if ($result->num_rows > 0) {
 $sql = "SELECT TeamName FROM Teams";
 $result = $conn->query($sql);
 
-$teams = array();
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+$teams = array(); // Initialize an empty array to hold the team names
+// Check if the result has more than 0 rows
+if ($result->num_rows > 0) { // If there are rows in the result set
+    // Loop through each row in the result set
+    while($row = $result->fetch_assoc()) { // Fetch a row as an associative array
+        // Add the value of 'TeamName' from the current row to the $teams array
         $teams[] = $row['TeamName'];
     }
 }
+
 
 // Handle team filter
 if(isset($_POST['team_filter'])) {
@@ -104,53 +108,53 @@ $conn->close();
         }
     }
 </script>
-    <h2>Top Scorers</h2>
-    <div class="table-container">
-    <form action="top_scorers.php" method="POST">
-        <label for="team_filter">Filter by Team:</label>
-        <select id="team_filter" name="team_filter">
-            <option value="All">All</option>
-            <?php foreach ($teams as $team): ?>
-                <option value="<?php echo $team; ?>"><?php echo $team; ?></option>
+<h2>Top Scorers</h2> <!-- Header for the section -->
+    <div class="table-container"> <!-- Container for the table -->
+    <form action="top_scorers.php" method="POST"> <!-- Form to filter top scorers by team -->
+        <label for="team_filter">Filter by Team:</label> <!-- Label for the team filter dropdown -->
+        <select id="team_filter" name="team_filter"> <!-- Dropdown for selecting a team to filter -->
+            <option value="All">All</option> <!-- Option to show all teams -->
+            <?php foreach ($teams as $team): ?> <!-- Loop through each team in the $teams array -->
+                <option value="<?php echo $team; ?>"><?php echo $team; ?></option> <!-- Option for each team -->
             <?php endforeach; ?>
         </select>
-        <button type="submit">Apply Filter</button>
+        <button type="submit">Apply Filter</button> <!-- Button to submit the form -->
     </form>
-    <table id="top-scorers-table">
+    <table id="top-scorers-table"> <!-- Table to display top scorers -->
         <thead>
             <tr>
-                <th>Player Name</th>
-                <th>Team</th>
-                <th>Goals Scored</th>
+                <th>Player Name</th> <!-- Table header for player names -->
+                <th>Team</th> <!-- Table header for team names -->
+                <th>Goals Scored</th> <!-- Table header for goals scored -->
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($filtered_goalscorers as $goalscorer): ?>
-                <?php if ($goalscorer['GoalsScored'] > 0): ?>
-                    <tr class="clickable-row" data-href="player_fixtures.php?player_id=<?php echo $goalscorer['PlayerID']; ?>">
-                        <td><?php echo $goalscorer['PlayerName']; ?></td>
-                        <td><?php echo $goalscorer['TeamName']; ?></td>
-                        <td><?php echo $goalscorer['GoalsScored']; ?></td>
+            <?php foreach ($filtered_goalscorers as $goalscorer): ?> <!-- Loop through each filtered goalscorer -->
+                <?php if ($goalscorer['GoalsScored'] > 0): ?> <!-- Check if the player has scored more than 0 goals -->
+                    <tr class="clickable-row" data-href="player_fixtures.php?player_id=<?php echo $goalscorer['PlayerID']; ?>"> <!-- Table row for each goalscorer with clickable link -->
+                        <td><?php echo $goalscorer['PlayerName']; ?></td> <!-- Display player name -->
+                        <td><?php echo $goalscorer['TeamName']; ?></td> <!-- Display team name -->
+                        <td><?php echo $goalscorer['GoalsScored']; ?></td> <!-- Display goals scored -->
                     </tr>
                 <?php endif; ?>
             <?php endforeach; ?>
         </tbody>
     </table>
                 </div>
-                <footer>
-        <p>&copy; 2024 EPL. All rights reserved.</p>
+                <footer> <!-- Footer section -->
+        <p>&copy; 2024 EPL. All rights reserved.</p> <!-- Copyright notice -->
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var table = document.getElementById("top-scorers-table");
-            var rows = table.getElementsByTagName("tr");
-            for (var i = 0; i < rows.length; i++) {
+        document.addEventListener("DOMContentLoaded", function() { // Ensure the script runs after the DOM is fully loaded
+            var table = document.getElementById("top-scorers-table"); // Get the table element by its ID
+            var rows = table.getElementsByTagName("tr"); // Get all rows in the table
+            for (var i = 0; i < rows.length; i++) { // Loop through each row
                 var row = rows[i];
-                row.addEventListener("click", function() {
-                    var href = this.dataset.href;
-                    if (href) {
-                        window.location.href = href;
+                row.addEventListener("click", function() { // Add click event listener to each row
+                    var href = this.dataset.href; // Get the data-href attribute of the clicked row
+                    if (href) { // If there is a href value
+                        window.location.href = href; // Navigate to the URL specified in data-href
                     }
                 });
             }

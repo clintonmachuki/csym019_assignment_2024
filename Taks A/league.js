@@ -1,18 +1,30 @@
 // Function used to fetch and validate data from League.json using AJAX
 function fetchDataAndValidate(callback) {
+    // Create a new XMLHttpRequest object
     var xhr = new XMLHttpRequest();
+
+    // Event handler to process the AJAX request
     xhr.onreadystatechange = function() {
+        // Check if the request is complete
         if (xhr.readyState === XMLHttpRequest.DONE) {
+            // Check if the request was successful (status code 200)
             if (xhr.status === 200) {
+                // Parse the JSON response into an object
                 var data = JSON.parse(xhr.responseText);
+                // Call the validateData function to validate the fetched data
                 validateData(data);
+                // Call the callback function and pass the fetched data to it
                 callback(data);
             } else {
+                // Log an error message if the request fails
                 console.error('Error fetching data:', xhr.status);
             }
         }
     };
+
+    // Open a GET request to fetch League.json asynchronously
     xhr.open('GET', 'League.json', true);
+    // Send the AJAX request
     xhr.send();
 }
 // Function to generate the league table from the fixtures data

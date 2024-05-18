@@ -96,7 +96,10 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>League Table Bar Graph</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to an external stylesheet -->
+    <!-- Include Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Explanation: The <script> tag above includes the Chart.js library from a CDN (Content Delivery Network). Chart.js is a popular JavaScript library for creating interactive and responsive charts and graphs in web applications. By including this script tag, we can access the Chart.js library and use its functionalities to create various types of charts and graphs within our web page. Using a CDN ensures that we can easily access the latest version of the library without having to host it on our own server. -->
+
 </head>
 <body>
 <ul>
@@ -161,6 +164,33 @@ $conn->close();
     </div>
 
     <script>
+        // Check if the cookie named "username" exists
+        const isLoggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('username='));
+
+        // Get the list items corresponding to the menu items you want to hide/deny access to
+        const addResults = document.getElementById('add_results');
+        const addScorers = document.getElementById('add_scorers');
+        const fixtures = document.getElementById('fixtures');
+        const addPlayer = document.getElementById('add_player');
+        const teamsInput = document.getElementById('teams_input');
+        const registerAdmin = document.getElementById('register_admin');
+
+        if (!isLoggedIn) {
+            // User is not logged in, hide menu items and deny access to pages
+            addResults.style.display = 'none'; // Hide "Add Results" menu item
+            addScorers.style.display = 'none'; // Hide "Add Scorers" menu item
+            fixtures.style.display = 'none'; // Hide "Fixtures" menu item
+            addPlayer.style.display = 'none'; // Hide "Add Player" menu item
+            teamsInput.style.display = 'none'; // Hide "Teams Input" menu item
+            registerAdmin.style.display = 'none'; // Hide "Register admin" menu item
+
+            // Redirect user to login page if they try to access certain pages directly
+            const restrictedPages = ['add_results.php', 'add_scorers.php', 'fixtures.php', 'add_player.php', 'teams_input.php', 'register_admin.html'];
+            if (restrictedPages.includes(window.location.pathname.split('/').pop())) {
+                window.location.href = 'login.html'; // Redirect to login page
+            }
+        }
+
         var teams = <?php echo json_encode(array_values($teams)); ?>;
         var teamStats = {
             "points": <?php echo json_encode(array_values($points)); ?>,
@@ -282,35 +312,6 @@ $conn->close();
             });
         }
     </script>
-
-<script>
-    // Check if the cookie named "username" exists
-    const isLoggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('username='));
-
-    // Get the list items corresponding to the menu items you want to hide/deny access to
-    const addResults = document.getElementById('add_results');
-    const addScorers = document.getElementById('add_scorers');
-    const fixtures = document.getElementById('fixtures');
-    const addPlayer = document.getElementById('add_player');
-    const teamsInput = document.getElementById('teams_input');
-    const registerAdmin = document.getElementById('register_admin');
-
-    if (!isLoggedIn) {
-        // User is not logged in, hide menu items and deny access to pages
-        addResults.style.display = 'none'; // Hide "Add Results" menu item
-        addScorers.style.display = 'none'; // Hide "Add Scorers" menu item
-        fixtures.style.display = 'none'; // Hide "Fixtures" menu item
-        addPlayer.style.display = 'none'; // Hide "Add Player" menu item
-        teamsInput.style.display = 'none'; // Hide "Teams Input" menu item
-        registerAdmin.style.display = 'none'; // Hide "Register admin" menu item
-
-        // Redirect user to login page if they try to access certain pages directly
-        const restrictedPages = ['add_results.php', 'add_scorers.php', 'fixtures.php', 'add_player.php', 'teams_input.php', 'register_admin.html'];
-        if (restrictedPages.includes(window.location.pathname.split('/').pop())) {
-            window.location.href = 'login.html'; // Redirect to login page
-        }
-    }
-</script>
     <footer>
         <p>&copy; 2024 EPL. All rights reserved.</p>
     </footer>
