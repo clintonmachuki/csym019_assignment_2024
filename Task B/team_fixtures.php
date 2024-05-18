@@ -61,6 +61,7 @@ $conn->close(); // Close the database connection after fetching data
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
     <h2>Team Fixtures</h2> <!-- Heading for the team fixtures -->
+    <div class="table-container">
     <h3>Fixtures for <?php echo $teamNames[$selectedTeamID]; ?></h3> <!-- Display selected team name -->
     <table border="1"> <!-- Table to display the team fixtures -->
         <tr>
@@ -77,6 +78,10 @@ $conn->close(); // Close the database connection after fetching data
             </tr>
         <?php endforeach; ?> <!-- End of fixture loop -->
     </table>
+        </div>
+        <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 </body>
 </html>
 

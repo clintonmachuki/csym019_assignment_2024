@@ -85,5 +85,8 @@ $conn->close(); // Close the database connection
         window.onload = filterFixtures; // Call filterFixtures function when the page loads
         document.getElementById("result").addEventListener("change", filterFixtures); // Call filterFixtures function when the result input changes
     </script>
+    <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 </body>
 </html>

@@ -72,6 +72,7 @@ $conn->close();
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
+    <div class="table-container">
     <h2><?php echo $playerName; ?>'s Has scored in the following fixtures</h2>
     <table border="1" cellpadding="5" cellspacing="0">
     <!-- Table opening tag with border, cell padding, and cell spacing attributes -->
@@ -101,6 +102,10 @@ $conn->close();
     <!-- End of the PHP foreach loop -->
 </table>
 <!-- Table closing tag -->
+    </div>
+    <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>

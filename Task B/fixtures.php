@@ -92,5 +92,8 @@ $conn->close(); // Close the database connection after fetching data
         <input type="text" id="result" name="result"><br><br> <!-- Input field for result -->
         <button type="submit">Add Fixture</button> <!-- Submit button to add fixture -->
     </form>
+    <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 </body>
 </html>

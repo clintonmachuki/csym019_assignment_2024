@@ -168,5 +168,8 @@ $conn->close();
             });
         });
     </script>
+    <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 </body>
 </html>

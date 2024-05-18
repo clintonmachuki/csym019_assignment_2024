@@ -76,6 +76,7 @@ $conn->close();
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
     <h2>Top Scorers</h2>
+    <div class="table-container">
     <form action="top_scorers.php" method="POST">
         <label for="team_filter">Filter by Team:</label>
         <select id="team_filter" name="team_filter">
@@ -106,6 +107,10 @@ $conn->close();
             <?php endforeach; ?>
         </tbody>
     </table>
+                </div>
+                <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

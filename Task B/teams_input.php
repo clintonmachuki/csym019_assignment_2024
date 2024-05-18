@@ -51,5 +51,8 @@
         <input type="text" id="team_logo" name="team_logo"><br><br>
         <button type="submit">Add Team</button>
     </form>
+    <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 </body>
 </html>

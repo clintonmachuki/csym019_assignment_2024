@@ -44,6 +44,7 @@ $conn->close(); // Close the database connection after fetching data
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
     <h2>Fixtures</h2>
+    <div class="table-container">
     <?php
     // Initialize variable to store previous date
     $prevDate = null;
@@ -93,5 +94,9 @@ $conn->close(); // Close the database connection after fetching data
             });
         });
     </script>
+    </div>
+    <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 </body>
 </html>

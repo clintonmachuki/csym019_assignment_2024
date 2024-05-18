@@ -95,7 +95,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>League Table Bar Graph</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to an external stylesheet -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -112,84 +112,177 @@ $conn->close();
         <li><a href="teams_input.php">Teams Input</a></li>
         <li><a href="register_admin.html">Register admin</a></li>
     </ul>
-    <canvas id="leagueTableChart" width="400" height="200"></canvas>
+    <div class="container">
+        <form id="teamComparisonForm">
+            <label for="team1">Select Team 1:</label>
+            <select id="team1" name="team1"></select>
+
+            <label for="team2">Select Team 2:</label>
+            <select id="team2" name="team2"></select>
+
+            <label for="metric1">Select Metric 1:</label>
+            <select id="metric1" name="metric1">
+                <option value="">Select Metric</option>
+                <option value="points">Points</option>
+                <option value="goalsFor">Goals For</option>
+                <option value="goalsAgainst">Goals Against</option>
+                <option value="wins">Wins</option>
+                <option value="losses">Losses</option>
+                <option value="draws">Draws</option>
+            </select>
+
+            <label for="metric2">Select Metric 2:</label>
+            <select id="metric2" name="metric2">
+                <option value="">Select Metric</option>
+                <option value="points">Points</option>
+                <option value="goalsFor">Goals For</option>
+                <option value="goalsAgainst">Goals Against</option>
+                <option value="wins">Wins</option>
+                <option value="losses">Losses</option>
+                <option value="draws">Draws</option>
+            </select>
+
+            <label for="metric3">Select Metric 3:</label>
+            <select id="metric3" name="metric3">
+                <option value="">Select Metric</option>
+                <option value="points">Points</option>
+                <option value="goalsFor">Goals For</option>
+                <option value="goalsAgainst">Goals Against</option>
+                <option value="wins">Wins</option>
+                <option value="losses">Losses</option>
+                <option value="draws">Draws</option>
+            </select>
+
+            <button type="button" onclick="updateCharts()">Compare</button>
+        </form>
+        <canvas id="barChart" width="400" height="200"></canvas>
+        <canvas id="pieChart" width="400" height="200"></canvas>
+    </div>
+
     <script>
         var teams = <?php echo json_encode(array_values($teams)); ?>;
-        var points = <?php echo json_encode(array_values($points)); ?>;
-        var wins = <?php echo json_encode(array_values($won)); ?>;
-        var losses = <?php echo json_encode(array_values($lost)); ?>;
-        var draws = <?php echo json_encode(array_values($drawn)); ?>;
+        var teamStats = {
+            "points": <?php echo json_encode(array_values($points)); ?>,
+            "goalsFor": <?php echo json_encode(array_values($goalsFor)); ?>,
+            "goalsAgainst": <?php echo json_encode(array_values($goalsAgainst)); ?>,
+            "wins": <?php echo json_encode(array_values($won)); ?>,
+            "losses": <?php echo json_encode(array_values($lost)); ?>,
+            "draws": <?php echo json_encode(array_values($drawn)); ?>
+        };
 
         document.addEventListener("DOMContentLoaded", function() {
-            var ctx = document.getElementById('leagueTableChart').getContext('2d');
+            var team1Select = document.getElementById('team1');
+            var team2Select = document.getElementById('team2');
 
-            // Create an array of objects with team data
-            var teamData = [];
-            for (var i = 0; i < teams.length; i++) {
-                teamData.push({
-                    team: teams[i],
-                    points: points[i],
-                    wins: wins[i],
-                    losses: losses[i],
-                    draws: draws[i]
-                });
-            }
+            // Populate team dropdowns
+            teams.forEach(function(team) {
+                var option1 = document.createElement('option');
+                option1.value = team;
+                option1.textContent = team;
+                team1Select.appendChild(option1);
 
-            // Sort team data by points (descending order)
-            teamData.sort(function(a, b) {
-                return b.points - a.points;
+                var option2 = document.createElement('option');
+                option2.value = team;
+                option2.textContent = team;
+                team2Select.appendChild(option2);
             });
+        });
 
-            // Extract sorted data back into separate arrays
-            for (var i = 0; i < teamData.length; i++) {
-                teams[i] = teamData[i].team;
-                points[i] = teamData[i].points;
-                wins[i] = teamData[i].wins;
-                losses[i] = teamData[i].losses;
-                draws[i] = teamData[i].draws;
+        function updateCharts() {
+            var team1 = document.getElementById('team1').value;
+            var team2 = document.getElementById('team2').value;
+            var metric1 = document.getElementById('metric1').value;
+            var metric2 = document.getElementById('metric2').value;
+            var metric3 = document.getElementById('metric3').value;
+
+            var selectedMetrics = [metric1, metric2, metric3].filter(Boolean);
+
+            var team1Data = selectedMetrics.map(metric => teamStats[metric][teams.indexOf(team1)]);
+            var team2Data = selectedMetrics.map(metric => teamStats[metric][teams.indexOf(team2)]);
+
+            var ctxBar = document.getElementById('barChart').getContext('2d');
+            var ctxPie = document.getElementById('pieChart').getContext('2d');
+
+            // Destroy previous charts if they exist
+            if (window.myBarChart) {
+                window.myBarChart.destroy();
+            }
+            if (window.myPieChart) {
+                window.myPieChart.destroy();
             }
 
-            var myChart = new Chart(ctx, {
+            // Create new bar chart
+            window.myBarChart = new Chart(ctxBar, {
                 type: 'bar',
                 data: {
-                    labels: teams,
+                    labels: selectedMetrics,
+                    datasets: [
+                        {
+                            label: team1,
+                            data: team1Data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)', // Random color for team 1
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: team2,
+                            data: team2Data,
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)', // Random color for team 2
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Create new pie chart with random background colors
+            var pieLabels = selectedMetrics.flatMap(metric => [`${team1} - ${metric}`, `${team2} - ${metric}`]);
+            var pieData = team1Data.concat(team2Data);
+            var pieBackgroundColors = [];
+
+            for (let i = 0; i < pieLabels.length; i++) {
+                const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.5)`;
+                pieBackgroundColors.push(randomColor);
+            }
+
+            window.myPieChart = new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: pieLabels,
                     datasets: [{
-                        label: 'Points',
-                        data: points,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Wins',
-                        data: wins,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Losses',
-                        data: losses,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Draws',
-                        data: draws,
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
+                        data: pieData,
+                        backgroundColor: pieBackgroundColors,
+                        borderColor: 'rgba(255, 255, 255, 1)', // White border for all sections
                         borderWidth: 1
                     }]
                 },
                 options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw;
+                                }
                             }
-                        }]
+                        }
                     }
                 }
             });
-        });
+        }
     </script>
+    <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 </body>
 </html>

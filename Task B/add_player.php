@@ -108,5 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Check if the form has been submit
             <input type="reset" value="Reset"> <!-- Reset button to clear form -->
         </div>
     </form>
+    <footer>
+        <p>&copy; 2024 EPL. All rights reserved.</p>
+    </footer>
 </body>
 </html>
