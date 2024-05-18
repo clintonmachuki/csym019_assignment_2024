@@ -117,53 +117,67 @@ $conn->close();
         <li id="Login"><a href="Login.html">Login</a></li>
     </ul>
     <div class="container">
-        <form id="teamComparisonForm">
-            <label for="team1">Select Team 1:</label>
-            <select id="team1" name="team1"></select>
+    <!-- Form for selecting teams and metrics for comparison -->
+    <form id="teamComparisonForm">
+        <!-- Select Team 1 dropdown -->
+        <label for="team1">Select Team 1:</label>
+        <select id="team1" name="team1"></select>
 
-            <label for="team2">Select Team 2:</label>
-            <select id="team2" name="team2"></select>
+        <!-- Select Team 2 dropdown -->
+        <label for="team2">Select Team 2:</label>
+        <select id="team2" name="team2"></select>
 
-            <label for="metric1">Select Metric 1:</label>
-            <select id="metric1" name="metric1">
-                <option value="">Select Metric</option>
-                <option value="points">Points</option>
-                <option value="goalsFor">Goals For</option>
-                <option value="goalsAgainst">Goals Against</option>
-                <option value="wins">Wins</option>
-                <option value="losses">Losses</option>
-                <option value="draws">Draws</option>
-            </select>
+        <!-- Select Metric 1 dropdown -->
+        <label for="metric1">Select Metric 1:</label>
+        <select id="metric1" name="metric1">
+            <option value="">Select Metric</option>
+            <!-- Options for different metrics -->
+            <option value="points">Points</option>
+            <option value="goalsFor">Goals For</option>
+            <option value="goalsAgainst">Goals Against</option>
+            <option value="wins">Wins</option>
+            <option value="losses">Losses</option>
+            <option value="draws">Draws</option>
+        </select>
 
-            <label for="metric2">Select Metric 2:</label>
-            <select id="metric2" name="metric2">
-                <option value="">Select Metric</option>
-                <option value="points">Points</option>
-                <option value="goalsFor">Goals For</option>
-                <option value="goalsAgainst">Goals Against</option>
-                <option value="wins">Wins</option>
-                <option value="losses">Losses</option>
-                <option value="draws">Draws</option>
-            </select>
+        <!-- Select Metric 2 dropdown -->
+        <label for="metric2">Select Metric 2:</label>
+        <select id="metric2" name="metric2">
+            <option value="">Select Metric</option>
+            <!-- Options for different metrics -->
+            <option value="points">Points</option>
+            <option value="goalsFor">Goals For</option>
+            <option value="goalsAgainst">Goals Against</option>
+            <option value="wins">Wins</option>
+            <option value="losses">Losses</option>
+            <option value="draws">Draws</option>
+        </select>
 
-            <label for="metric3">Select Metric 3:</label>
-            <select id="metric3" name="metric3">
-                <option value="">Select Metric</option>
-                <option value="points">Points</option>
-                <option value="goalsFor">Goals For</option>
-                <option value="goalsAgainst">Goals Against</option>
-                <option value="wins">Wins</option>
-                <option value="losses">Losses</option>
-                <option value="draws">Draws</option>
-            </select>
+        <!-- Select Metric 3 dropdown -->
+        <label for="metric3">Select Metric 3:</label>
+        <select id="metric3" name="metric3">
+            <option value="">Select Metric</option>
+            <!-- Options for different metrics -->
+            <option value="points">Points</option>
+            <option value="goalsFor">Goals For</option>
+            <option value="goalsAgainst">Goals Against</option>
+            <option value="wins">Wins</option>
+            <option value="losses">Losses</option>
+            <option value="draws">Draws</option>
+        </select>
 
-            <button type="button" onclick="updateCharts()">Compare</button>
-        </form>
-        <canvas id="barChart" width="400" height="200"></canvas>
-        <canvas id="pieChart" width="400" height="200"></canvas>
-    </div>
+        <!-- Button to trigger comparison -->
+        <button type="button" onclick="updateCharts()">Compare</button>
+    </form>
+    
+    <!-- Canvas for displaying bar chart -->
+    <canvas id="barChart" width="400" height="200"></canvas>
+    
+    <!-- Canvas for displaying pie chart -->
+    <canvas id="pieChart" width="400" height="200"></canvas>
+</div>
 
-    <script>
+<script>
         // Check if the cookie named "username" exists
         const isLoggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('username='));
 
@@ -175,135 +189,143 @@ $conn->close();
         const teamsInput = document.getElementById('teams_input');
         const registerAdmin = document.getElementById('register_admin');
 
+        // If the user is not logged in, hide certain menu items
         if (!isLoggedIn) {
-            // User is not logged in, hide menu items and deny access to pages
             addResults.style.display = 'none'; // Hide "Add Results" menu item
             addScorers.style.display = 'none'; // Hide "Add Scorers" menu item
             fixtures.style.display = 'none'; // Hide "Fixtures" menu item
             addPlayer.style.display = 'none'; // Hide "Add Player" menu item
             teamsInput.style.display = 'none'; // Hide "Teams Input" menu item
-            registerAdmin.style.display = 'none'; // Hide "Register admin" menu item
+            registerAdmin.style.display = 'none'; // Hide "Register Admin" menu item
 
-            // Redirect user to login page if they try to access certain pages directly
+            // Redirect user to login page if they try to access restricted pages directly
             const restrictedPages = ['add_results.php', 'add_scorers.php', 'fixtures.php', 'add_player.php', 'teams_input.php', 'register_admin.html'];
             if (restrictedPages.includes(window.location.pathname.split('/').pop())) {
                 window.location.href = 'login.html'; // Redirect to login page
             }
         }
 
-        var teams = <?php echo json_encode(array_values($teams)); ?>;
+        // Retrieve teams and their statistics from PHP
+        var teams = <?php echo json_encode(array_values($teams)); ?>; // Get teams
         var teamStats = {
-            "points": <?php echo json_encode(array_values($points)); ?>,
-            "goalsFor": <?php echo json_encode(array_values($goalsFor)); ?>,
-            "goalsAgainst": <?php echo json_encode(array_values($goalsAgainst)); ?>,
-            "wins": <?php echo json_encode(array_values($won)); ?>,
-            "losses": <?php echo json_encode(array_values($lost)); ?>,
-            "draws": <?php echo json_encode(array_values($drawn)); ?>
+            "points": <?php echo json_encode(array_values($points)); ?>, // Get points data
+            "goalsFor": <?php echo json_encode(array_values($goalsFor)); ?>, // Get goals for data
+            "goalsAgainst": <?php echo json_encode(array_values($goalsAgainst)); ?>, // Get goals against data
+            "wins": <?php echo json_encode(array_values($won)); ?>, // Get wins data
+            "losses": <?php echo json_encode(array_values($lost)); ?>, // Get losses data
+            "draws": <?php echo json_encode(array_values($drawn)); ?> // Get draws data
         };
 
+        // Populate team dropdowns once the DOM content is loaded
         document.addEventListener("DOMContentLoaded", function() {
-            var team1Select = document.getElementById('team1');
-            var team2Select = document.getElementById('team2');
+            var team1Select = document.getElementById('team1'); // Get Team 1 dropdown
+            var team2Select = document.getElementById('team2'); // Get Team 2 dropdown
 
-            // Populate team dropdowns
+            // Iterate through teams and create options for dropdowns
             teams.forEach(function(team) {
-                var option1 = document.createElement('option');
-                option1.value = team;
-                option1.textContent = team;
-                team1Select.appendChild(option1);
+                var option1 = document.createElement('option'); // Create option element for Team 1
+                option1.value = team; // Set the value of the option
+                option1.textContent = team; // Set the text of the option
+                team1Select.appendChild(option1); // Append the option to the dropdown
 
-                var option2 = document.createElement('option');
-                option2.value = team;
-                option2.textContent = team;
-                team2Select.appendChild(option2);
+                var option2 = document.createElement('option'); // Create option element for Team 2
+                option2.value = team; // Set the value of the option
+                option2.textContent = team; // Set the text of the option
+                team2Select.appendChild(option2); // Append the option to the dropdown
             });
         });
 
+        // Function to update charts based on selected teams and metrics
         function updateCharts() {
-            var team1 = document.getElementById('team1').value;
-            var team2 = document.getElementById('team2').value;
-            var metric1 = document.getElementById('metric1').value;
-            var metric2 = document.getElementById('metric2').value;
-            var metric3 = document.getElementById('metric3').value;
+            var team1 = document.getElementById('team1').value; // Get selected team 1
+            var team2 = document.getElementById('team2').value; // Get selected team 2
+            var metric1 = document.getElementById('metric1').value; // Get selected metric 1
+            var metric2 = document.getElementById('metric2').value; // Get selected metric 2
+            var metric3 = document.getElementById('metric3').value; // Get selected metric 3
 
+            // Filter out empty values from selected metrics
             var selectedMetrics = [metric1, metric2, metric3].filter(Boolean);
 
-            var team1Data = selectedMetrics.map(metric => teamStats[metric][teams.indexOf(team1)]);
-            var team2Data = selectedMetrics.map(metric => teamStats[metric][teams.indexOf(team2)]);
+            // Retrieve data for selected teams and metrics
+            var team1Data = selectedMetrics.map(metric => teamStats[metric][teams.indexOf(team1)]); // Get data for team 1
+            var team2Data = selectedMetrics.map(metric => teamStats[metric][teams.indexOf(team2)]); // Get data for team 2
 
-            var ctxBar = document.getElementById('barChart').getContext('2d');
-            var ctxPie = document.getElementById('pieChart').getContext('2d');
+            // Get canvas elements for chart rendering
+            var ctxBar = document.getElementById('barChart').getContext('2d'); // Get context for bar chart
+            var ctxPie = document.getElementById('pieChart').getContext('2d'); // Get context for pie chart
 
             // Destroy previous charts if they exist
             if (window.myBarChart) {
-                window.myBarChart.destroy();
+                window.myBarChart.destroy(); // Destroy bar chart
             }
             if (window.myPieChart) {
-                window.myPieChart.destroy();
+                window.myPieChart.destroy(); // Destroy pie chart
             }
 
             // Create new bar chart
             window.myBarChart = new Chart(ctxBar, {
                 type: 'bar',
                 data: {
-                    labels: selectedMetrics,
+                    labels: selectedMetrics, // Set labels for metrics
                     datasets: [
                         {
-                            label: team1,
-                            data: team1Data,
-                            backgroundColor: 'rgba(54, 162, 235, 0.5)', // Random color for team 1
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
+                            label: team1, // Set label for team 1
+                            data: team1Data, // Set data for team 1
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)', // Set color for team 1
+                            borderColor: 'rgba(54, 162, 235, 1)', // Set border color for team 1
+                            borderWidth: 1 // Set border width for team 1
                         },
                         {
-                            label: team2,
-                            data: team2Data,
-                            backgroundColor: 'rgba(255, 99, 132, 0.5)', // Random color for team 2
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
+                            label: team2, // Set label for team 2
+                            data: team2Data, // Set data for team 2
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)', // Set color for team 2
+                            borderColor: 'rgba(255, 99, 132, 1)', // Set border color for team 2
+                            borderWidth: 1 // Set border width for team 2
                         }
                     ]
                 },
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true // Ensure y-axis starts at zero
                         }
                     }
                 }
             });
 
             // Create new pie chart with random background colors
-            var pieLabels = selectedMetrics.flatMap(metric => [`${team1} - ${metric}`, `${team2} - ${metric}`]);
-            var pieData = team1Data.concat(team2Data);
-            var pieBackgroundColors = [];
+            var pieLabels = selectedMetrics.flatMap(metric => [`${team1} - ${metric}`, `${team2} - ${metric}`]); // Set labels for pie chart
+            var pieData = team1Data.concat(team2Data); // Combine data for pie chart
+            var pieBackgroundColors = []; // Initialize array for pie chart colors
 
+            // Generate random colors for pie chart
             for (let i = 0; i < pieLabels.length; i++) {
                 const randomColor = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.5)`;
                 pieBackgroundColors.push(randomColor);
             }
 
+            // Create new pie chart
             window.myPieChart = new Chart(ctxPie, {
                 type: 'pie',
                 data: {
-                    labels: pieLabels,
+                    labels: pieLabels, // Set labels for pie chart
                     datasets: [{
-                        data: pieData,
-                        backgroundColor: pieBackgroundColors,
-                        borderColor: 'rgba(255, 255, 255, 1)', // White border for all sections
-                        borderWidth: 1
+                        data: pieData, // Set data for pie chart
+                        backgroundColor: pieBackgroundColors, // Set background colors for pie chart
+                        borderColor: 'rgba(255, 255, 255, 1)', // Set border color for all sections
+                        borderWidth: 1 // Set border width for all sections
                     }]
                 },
                 options: {
-                    responsive: true,
+                    responsive: true, // Make chart responsive
                     plugins: {
                         legend: {
-                            position: 'top',
+                            position: 'top', // Set legend position
                         },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return context.label + ': ' + context.raw;
+                                    return context.label + ': ' + context.raw; // Format tooltip labels
                                 }
                             }
                         }
@@ -312,7 +334,9 @@ $conn->close();
             });
         }
     </script>
+
     <footer>
+        <!-- Copyright notice -->
         <p>&copy; 2024 EPL. All rights reserved.</p>
     </footer>
 </body>
